@@ -6,23 +6,19 @@ namespace Insurance.Domain.Models
     public class InsuranceProduct
     {
         [Key]
-        public int BenefitId { get; set; }
-
-        [Required(ErrorMessage = "Product Id is Required")]
         public int ProductId { get; set; }
 
-        [Required(ErrorMessage = "Benefit Name is Required")]
+        [Required(ErrorMessage = "Product Name is Required")]
         [StringLength(150)]
-        public string BenefitName { get; set; }
+        public string? ProductName { get; set; }
 
-        [Required(ErrorMessage = "Base Rate is Required")]
-        public decimal BaseRate { get; set; }
+        [Required(ErrorMessage = "Product Type is Required")]
+        [StringLength(50)]
+        public string? ProductType { get; set; }
 
-        [Required(ErrorMessage = "Minimum Amount is Required")]
-        public decimal Minimum { get; set; }
+        public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Maximum Amount is Required")]
-        public decimal Maximum { get; set; }
+        public bool Status { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -31,8 +27,5 @@ namespace Insurance.Domain.Models
         public int? ModifiedBy { get; set; }
 
         public DateTime? ModifiedAt { get; set; }
-
-        [ForeignKey("ProductId")]
-        public InsuranceProduct Product { get; set; }
     }
 }

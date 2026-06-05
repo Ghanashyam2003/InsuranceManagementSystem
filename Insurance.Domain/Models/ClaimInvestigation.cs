@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Insurance.Domain.Models
+{ 
     public class ClaimInvestigation
     {
     [Key]
@@ -12,7 +13,7 @@ namespace Insurance.Domain.Models
 
     [Required(ErrorMessage = "Remarks is Required")]
     [StringLength(500)]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     [Required(ErrorMessage = "Investigation Date is Required")]
     public DateTime InvestigationDate { get; set; }
@@ -24,7 +25,7 @@ namespace Insurance.Domain.Models
     public DateTime? ModifiedAt { get; set; }
 
     [ForeignKey("ClaimId")]
-    public Claim Claim { get; set; }
+    public Claim? Claim { get; set; }
 
 }
 }

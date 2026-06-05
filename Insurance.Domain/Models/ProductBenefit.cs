@@ -12,16 +12,24 @@ namespace Insurance.Domain.Models
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Benefit Name is Required")]
-        public string BenefitName { get; set; }
+        [StringLength(150)]
+        public string? BenefitName { get; set; }
 
         public decimal BaseRate { get; set; }
-        [Range(0.01, double.MaxValue, ErrorMessage = "Maximum must be greater than 0")]
-        public double Maximum { get; set; }
 
-        [Range(0.01, double.MaxValue, ErrorMessage = "Minimum must be greater than 0")]
-        public double Minimum { get; set; }
+        public decimal Minimum { get; set; }
+
+        public decimal Maximum { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public int? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("ProductId")]
-        public InsuranceProduct Product { get; set; }
+        public InsuranceProduct? Product { get; set; }
     }
 }

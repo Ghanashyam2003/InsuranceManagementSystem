@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Insurance.Domain.Models
+{ 
     public class Commission
     {
     [Key]
@@ -26,9 +27,9 @@ namespace Insurance.Domain.Models
     public DateTime? ModifiedAt { get; set; }
 
     [ForeignKey("AgentId")]
-    public Agents Agent { get; set; }
+    public Agents? Agent { get; set; }
 
     [ForeignKey("PolicyId")]
-    public Policy Policy { get; set; }
+    public Policy? Policy { get; set; }
 }
 }

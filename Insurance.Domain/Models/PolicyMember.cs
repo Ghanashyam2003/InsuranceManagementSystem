@@ -13,11 +13,11 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Member Name is Required")]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required(ErrorMessage = "Relation is Required")]
         [StringLength(50)]
-        public string Relation { get; set; }
+        public string? Relation { get; set; }
 
         [Required(ErrorMessage = "Date of Birth is Required")]
         public DateTime DOB { get; set; }
@@ -31,6 +31,6 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("PolicyId")]
-        public Policy Policy { get; set; }
+        public Policy? Policy { get; set; }
     }
 }

@@ -16,14 +16,13 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Entity Type is Required")]
         [StringLength(50)]
-        public string EntityType { get; set; }
+        public string? EntityType { get; set; }
 
         [Required(ErrorMessage = "File Name is Required")]
         [StringLength(255)]
-        public string FileName { get; set; }
-
+        public string? FileName { get; set; }
         [Required(ErrorMessage = "File Path is Required")]
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
 
         public bool Status { get; set; }
 

@@ -19,14 +19,14 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Claim Reason is Required")]
         [StringLength(500)]
-        public string ClaimReason { get; set; }
+        public string? ClaimReason { get; set; }
 
         [Required(ErrorMessage = "Claim Date is Required")]
         public DateTime ClaimDate { get; set; }
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(30)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -35,9 +35,9 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("AgentId")]
-        public Agents Agent { get; set; }
+        public Agents? Agent { get; set; }
 
         [ForeignKey("PolicyId")]
-        public Policy Policy { get; set; }
+        public Policy? Policy { get; set; }
     }
 }

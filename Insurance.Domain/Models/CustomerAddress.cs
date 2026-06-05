@@ -13,23 +13,22 @@ namespace Insurance.Domain.Models
 
     [Required(ErrorMessage = "Address Line 1 is Required")]
     [StringLength(200)]
-    public string AddressLine1 { get; set; }
+    public string? AddressLine1 { get; set; }
 
     [StringLength(200)]
     public string? AddressLine2 { get; set; }
 
     [Required(ErrorMessage = "City is Required")]
     [StringLength(100)]
-    public string City { get; set; }
+    public string? City { get; set; }
 
     [Required(ErrorMessage = "State is Required")]
     [StringLength(100)]
-    public string State { get; set; }
+    public string? State { get; set; }
 
     [Required(ErrorMessage = "Pin Code is Required")]
     [StringLength(6)]
-    public string PinCode { get; set; }
-
+    public string? PinCode { get; set; }
     public int CreatedBy { get; set; }
 
     public DateTime CreatedAt { get; set; }
@@ -39,7 +38,7 @@ namespace Insurance.Domain.Models
     public DateTime? ModifiedAt { get; set; }
 
     [ForeignKey("CustomerId")]
-    public Customer Customer { get; set; }
+    public Customer? Customer { get; set; }
 
 }
 }

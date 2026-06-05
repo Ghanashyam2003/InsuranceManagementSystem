@@ -33,6 +33,6 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("PolicyId")]
-        public Policy Policy { get; set; }
+        public Policy? Policy { get; set; }
     }
 }

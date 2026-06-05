@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.Domain.Models
 {
-    internal class HealthProfile
+    public class HealthProfile
     {
         [Key]
         public int HealthProfileId { get; set; }
@@ -38,7 +38,7 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
     }
 }

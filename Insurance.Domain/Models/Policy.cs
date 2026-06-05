@@ -12,7 +12,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Policy Number is Required")]
         [StringLength(50)]
-        public string PolicyNumber { get; set; }
+        public string? PolicyNumber { get; set; }
 
         [Required(ErrorMessage = "Customer Id is Required")]
         public int CustomerId { get; set; }
@@ -36,7 +36,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(30)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -56,10 +56,10 @@ namespace Insurance.Domain.Models
         public Quote? Quote { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         [ForeignKey("ProductId")]
-        public InsuranceProduct Product { get; set; }
+        public InsuranceProduct? Product { get; set; }
 
         [ForeignKey("AgentId")]
         public Agents? Agent { get; set; }

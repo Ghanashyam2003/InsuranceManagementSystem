@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.Domain.Models
 {
-    internal class CustomerKyc
+    public class CustomerKyc
     {
         [Key]
         public int KycId { get; set; }
@@ -18,16 +18,15 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "KYC Type is Required")]
         [StringLength(50)]
-        public string KycType { get; set; }
+        public string? KycType { get; set; }
 
         [Required(ErrorMessage = "Document Number is Required")]
         [StringLength(50)]
-        public string DocumentNumber { get; set; }
+        public string? DocumentNumber { get; set; }
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(20)]
-        public string Status { get; set; }
-
+        public string? Status { get; set; } = null;
         public int? VerifiedBy { get; set; }
 
         public DateTime? VerifiedDate { get; set; }
@@ -44,7 +43,7 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         [ForeignKey("VerifiedBy")]
         public User? VerifiedUser { get; set; }

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Insurance.Domain.Models
 {
-    internal class Role
+    public class Role
     {
         [Key]
         public int RoleId { get; set; }
 
         [Required(ErrorMessage = "Role Name is Required")]
         [StringLength(50)]
-        public string RoleName { get; set; }
+        public string? RoleName { get; set; }
 
         public bool IsActive { get; set; }
 

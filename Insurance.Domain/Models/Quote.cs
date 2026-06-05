@@ -1,4 +1,4 @@
-﻿using InsuranceProject.Models;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,7 +26,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(30)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -37,9 +37,9 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         [ForeignKey("ProductId")]
-        public InsuranceProduct Product { get; set; }
+        public InsuranceProduct? Product { get; set; }
     }
 }

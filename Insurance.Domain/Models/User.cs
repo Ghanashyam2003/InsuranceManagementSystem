@@ -21,19 +21,18 @@ namespace Insurance.Domain.Models
 
             [Required(ErrorMessage = "First Name is Required")]
             [StringLength(100)]
-            public string FirstName { get; set; }
+            public string? FirstName { get; set; }
 
             [Required(ErrorMessage = "Last Name is Required")]
             [StringLength(100)]
-            public string LastName { get; set; }
-
+            public string? LastName { get; set; }
             [Required(ErrorMessage = "Email is Required")]
             [EmailAddress]
             [StringLength(150)]
-            public string Email { get; set; }
+            public string? Email { get; set; }
 
             [Required(ErrorMessage = "Password is Required")]
-            public string Password { get; set; }
+            public string? Password { get; set; }
 
             public bool IsEmailVerified { get; set; }
 
@@ -47,7 +46,7 @@ namespace Insurance.Domain.Models
             public Customer? Customer { get; set; }
 
             [ForeignKey("RoleId")]
-            public Role Role { get; set; }
+            public Role? Role { get; set; }
         }
  }
 

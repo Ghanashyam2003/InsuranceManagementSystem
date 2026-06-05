@@ -16,15 +16,14 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Payment Mode is Required")]
         [StringLength(50)]
-        public string PaymentMode { get; set; }
+        public string? PaymentMode { get; set; }
 
         [Required(ErrorMessage = "Payment Status is Required")]
         [StringLength(30)]
-        public string PaymentStatus { get; set; }
-
+        public string? PaymentStatus { get; set; }
         [Required(ErrorMessage = "Transaction Number is Required")]
         [StringLength(100)]
-        public string TransactionNumber { get; set; }
+        public string? TransactionNumber { get; set; }
 
         [Required(ErrorMessage = "Payment Date is Required")]
         public DateTime PaymentDate { get; set; }
@@ -38,7 +37,7 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("PolicyId")]
-        public Policy Policy { get; set; }
+        public Policy? Policy { get; set; }
 
     }
 }

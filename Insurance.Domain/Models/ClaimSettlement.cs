@@ -16,7 +16,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Settlement Status is Required")]
         [StringLength(30)]
-        public string SettlementStatus { get; set; }
+        public string? SettlementStatus { get; set; }
 
         [Required(ErrorMessage = "Settlement Date is Required")]
         public DateTime SettlementDate { get; set; }
@@ -28,7 +28,7 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("ClaimId")]
-        public Claim Claim { get; set; }
+        public Claim? Claim { get; set; }
 
     }
 }

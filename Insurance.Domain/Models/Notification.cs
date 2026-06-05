@@ -13,12 +13,11 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Message is Required")]
         [StringLength(1000)]
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         [Required(ErrorMessage = "Notification Type is Required")]
         [StringLength(50)]
-        public string NotificationType { get; set; }
-
+        public string? NotificationType { get; set; }
         public bool IsRead { get; set; }
 
         public DateTime CreatedDate { get; set; }
@@ -30,7 +29,7 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
 
     }
 }

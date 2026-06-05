@@ -13,7 +13,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Risk Category is Required")]
         [StringLength(50)]
-        public string RiskCategory { get; set; }
+        public string? RiskCategory { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -24,6 +24,6 @@ namespace Insurance.Domain.Models
         public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("QuoteId")]
-        public Quote Quote { get; set; }
+        public Quote? Quote { get; set; }
     }
 }
