@@ -1,5 +1,7 @@
 using Insurance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Insurance.API.Middleware;
+using Serilog;
 
 
 
@@ -27,6 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseGlobalExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
