@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 
 
@@ -32,6 +33,18 @@ builder.Services.AddRateLimiter(options =>
             limiterOptions.PermitLimit = 5;
             limiterOptions.Window = TimeSpan.FromMinutes(1);
             limiterOptions.QueueLimit = 0;
+        });
+});
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter(
+        "ApiThrottle",
+        opt =>
+        {
+            opt.PermitLimit = 5;
+            opt.Window = TimeSpan.FromMinutes(1);
+            opt.QueueLimit = 0;
         });
 });
 
@@ -69,6 +82,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseRateLimiter();
+
+
 
 app.MapControllers();
 
