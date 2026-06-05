@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="Insurance.API/Insurance.API.csproj" />
+  <Project Path="Insurance.Application/Insurance.Application.csproj" Id="ee88e685-571d-4feb-8757-c1e91fe6af15" />
+  <Project Path="Insurance.Domain/Insurance.Domain.csproj" Id="edb77ec5-7826-479d-8922-8af214b00307" />
+  <Project Path="Insurance.Infrastructure/Insurance.Infrastructure.csproj" Id="3135d276-8c62-4d8f-a36a-f2993fd017ca" />
 </Solution>

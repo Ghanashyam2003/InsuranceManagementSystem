@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Insurance.Domain.Entities
+namespace Insurance.Domain.Models
     public class ClaimInvestigation
     {
         [Key]

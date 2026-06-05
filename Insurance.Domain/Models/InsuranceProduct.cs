@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Insurance.Domain.Entities
+namespace Insurance.Domain.Models
 {
     public class InsuranceProduct
     {
