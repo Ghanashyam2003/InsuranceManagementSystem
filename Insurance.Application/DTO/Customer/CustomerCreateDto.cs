@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Insurance.Application.DTO
+namespace Insurance.Application.DTO.Customer
 {
-    internal class Class1
+    internal class CustomerCreateDto
     {
     }
 }
