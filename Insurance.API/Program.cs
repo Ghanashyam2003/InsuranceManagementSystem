@@ -3,9 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using Insurance.API.Middleware;
 using Serilog;
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "Logs/log-.txt",
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -23,6 +33,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+Log.Information("Insurance API Started Successfully");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -38,4 +50,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    Log.Information("Application Starting");
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application Failed To Start");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

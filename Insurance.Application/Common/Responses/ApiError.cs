@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Insurance.Application.Common.Responses
 {
-    internal class ApiError
+    public class ApiError
     {
+        public string? Code { get; set; }
+
+        public string? Details { get; set; }
     }
 }
