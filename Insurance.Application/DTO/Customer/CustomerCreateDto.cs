@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Insurance.Application.DTO.Customer
+﻿namespace Insurance.Application.DTOs.Customer
 {
-    internal class CustomerCreateDto
+    public class CustomerCreateDto
     {
+        public string? FirstName { get; set; }
+
+        public string? LastName { get; set; }
+
+        public string? Email { get; set; }
+
+        public string? MobileNumber { get; set; }
     }
 }

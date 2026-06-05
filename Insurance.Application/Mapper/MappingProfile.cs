@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Insurance.Application.DTOs.Customer;
+using Insurance.Domain.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Insurance.Application.Mapper
+namespace Insurance.Application.Mappings
 {
-    internal class MappingProfile
+    public class MappingProfile : Profile
     {
+        public MappingProfile()
+        {
+            CreateMap<CustomerCreateDto, Customer>();
+
+            CreateMap<Customer, CustomerResponseDto>();
+        }
     }
 }

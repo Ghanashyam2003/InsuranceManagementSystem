@@ -1,7 +1,12 @@
-using Insurance.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using Insurance.API.Middleware;
+using Insurance.Application.Mappings;
+using Insurance.Infrastructure.Data;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Microsoft.AspNetCore.RateLimiting;
+
+
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -13,7 +18,22 @@ Log.Logger = new LoggerConfiguration()
 
 
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter(
+        "fixed",
+        limiterOptions =>
+        {
+            limiterOptions.PermitLimit = 5;
+            limiterOptions.Window = TimeSpan.FromMinutes(1);
+            limiterOptions.QueueLimit = 0;
+        });
+});
 
 builder.Host.UseSerilog();
 
@@ -47,6 +67,8 @@ app.UseGlobalExceptionMiddleware();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseRateLimiter();
 
 app.MapControllers();
 

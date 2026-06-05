@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Insurance.Application.DTO.Customer
+namespace Insurance.Application.DTOs.Customer
 {
-    internal class CustomerResponseDto
+    public class CustomerResponseDto
     {
+        public int CustomerId { get; set; }
+
+        public string? FirstName { get; set; }
+
+        public string? LastName { get; set; }
+
+        public string? Email { get; set; }
     }
 }
