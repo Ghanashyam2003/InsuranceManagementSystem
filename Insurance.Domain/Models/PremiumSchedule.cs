@@ -22,6 +22,16 @@ namespace Insurance.Domain.Models
 
         public bool IsPaid { get; set; }
 
+        public DateTime? PaidDate { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public int? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedAt { get; set; }
+
         [ForeignKey("PolicyId")]
         public Policy Policy { get; set; }
     }

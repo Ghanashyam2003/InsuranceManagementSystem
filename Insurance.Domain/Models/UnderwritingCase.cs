@@ -8,16 +8,20 @@ namespace Insurance.Domain.Models
         [Key]
         public int CaseId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Quote Id is Required")]
         public int QuoteId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Risk Category is Required")]
+        [StringLength(50)]
         public string RiskCategory { get; set; }
 
-        public string? Remarks { get; set; }
+        public int CreatedBy { get; set; }
 
-        [Required]
-        public string Decision { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedAt { get; set; }
 
         [ForeignKey("QuoteId")]
         public Quote Quote { get; set; }

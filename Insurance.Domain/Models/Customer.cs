@@ -1,11 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Insurance.Domain.Models
 {
-    public class CustomerMaster
+    public class Customer
     {
         [Key]
         public int CustomerId { get; set; }
+
+        [Required(ErrorMessage = "Agent Id is Required")]
+        public int AgentId { get; set; }
 
         [Required(ErrorMessage = "Customer Code is Required")]
         [StringLength(20)]
@@ -23,6 +27,7 @@ namespace Insurance.Domain.Models
         public DateTime DOB { get; set; }
 
         [Required(ErrorMessage = "Gender is Required")]
+        [StringLength(20)]
         public string Gender { get; set; }
 
         [Required(ErrorMessage = "Mobile Number is Required")]
@@ -31,6 +36,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Email is Required")]
         [EmailAddress]
+        [StringLength(150)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "PAN Number is Required")]
@@ -41,14 +47,17 @@ namespace Insurance.Domain.Models
         [StringLength(12)]
         public string AadharNumber { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public bool IsDeleted { get; set; }
 
         public int CreatedBy { get; set; }
 
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public int? ModifiedBy { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+
+        [ForeignKey("AgentId")]
+        public Agents Agent { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using InsuranceProject.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Insurance.Domain.Models
@@ -21,10 +20,19 @@ namespace Insurance.Domain.Models
         public string Relation { get; set; }
 
         [Required(ErrorMessage = "Share Percentage is Required")]
-        [Range(1, 100, ErrorMessage = "Share Percentage must be between 1 and 100")]
+        [Range(0.01, 100, ErrorMessage = "Share Percentage must be between 0.01 and 100")]
         public decimal SharePercentage { get; set; }
 
+        public int CreatedBy { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public int? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedAt { get; set; }
+
         [ForeignKey("CustomerId")]
-        public CustomerMaster Customer { get; set; }
+        public Customer Customer { get; set; }
+
     }
 }

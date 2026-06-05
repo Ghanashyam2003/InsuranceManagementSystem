@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="Interface\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
