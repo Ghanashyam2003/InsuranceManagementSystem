@@ -41,5 +41,12 @@ namespace Insurance.Domain.Models
 
         [ForeignKey("ProductId")]
         public InsuranceProduct? Product { get; set; }
+
+        public decimal SumInsured { get; set; }
+
+        [StringLength(20)]
+        public string? RiskCategory { get; set; }
+
+        public decimal RiskLoadingPercentage { get; set; }
     }
 }
