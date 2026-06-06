@@ -29,3 +29,975 @@
 2026-06-06 00:00:39.176 +09:00 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 18.7697ms
 2026-06-06 00:00:39.182 +09:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
 2026-06-06 00:00:39.190 +09:00 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 16.957ms
+2026-06-06 10:11:38.627 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:11:38.959 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:12:06.322 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:12:09.765 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:12:10.206 +05:30 [INF] Executed DbCommand (318ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [InsuranceDB];
+2026-06-06 10:12:10.291 +05:30 [INF] Executed DbCommand (80ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [InsuranceDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-06-06 10:12:10.334 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 10:12:10.468 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2026-06-06 10:12:10.470 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 10:12:10.495 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 10:12:10.516 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-06-06 10:12:10.542 +05:30 [INF] Applying migration '20260606044139_InitialCreate'.
+2026-06-06 10:12:10.796 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Agents] (
+    [AgentId] int NOT NULL IDENTITY,
+    [AgentCode] nvarchar(20) NOT NULL,
+    [AgentName] nvarchar(150) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [MobileNumber] nvarchar(10) NOT NULL,
+    [IsActive] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Agents] PRIMARY KEY ([AgentId])
+);
+2026-06-06 10:12:10.803 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [InsuranceProducts] (
+    [ProductId] int NOT NULL IDENTITY,
+    [ProductName] nvarchar(150) NOT NULL,
+    [ProductType] nvarchar(50) NOT NULL,
+    [Description] nvarchar(max) NULL,
+    [Status] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_InsuranceProducts] PRIMARY KEY ([ProductId])
+);
+2026-06-06 10:12:10.806 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Roles] (
+    [RoleId] int NOT NULL IDENTITY,
+    [RoleName] nvarchar(50) NOT NULL,
+    [IsActive] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Roles] PRIMARY KEY ([RoleId])
+);
+2026-06-06 10:12:10.813 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Customers] (
+    [CustomerId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [CustomerCode] nvarchar(20) NOT NULL,
+    [FirstName] nvarchar(100) NOT NULL,
+    [LastName] nvarchar(100) NOT NULL,
+    [DOB] datetime2 NOT NULL,
+    [Gender] nvarchar(20) NOT NULL,
+    [MobileNumber] nvarchar(10) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [PANNumber] nvarchar(10) NOT NULL,
+    [AadharNumber] nvarchar(12) NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([CustomerId]),
+    CONSTRAINT [FK_Customers_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId])
+);
+2026-06-06 10:12:10.818 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ProductBenefits] (
+    [BenefitId] int NOT NULL IDENTITY,
+    [ProductId] int NOT NULL,
+    [BenefitName] nvarchar(150) NOT NULL,
+    [BaseRate] decimal(18,2) NOT NULL,
+    [Minimum] decimal(18,2) NOT NULL,
+    [Maximum] decimal(18,2) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ProductBenefits] PRIMARY KEY ([BenefitId]),
+    CONSTRAINT [FK_ProductBenefits_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId])
+);
+2026-06-06 10:12:10.823 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [AddressLine1] nvarchar(200) NOT NULL,
+    [AddressLine2] nvarchar(200) NULL,
+    [City] nvarchar(100) NOT NULL,
+    [State] nvarchar(100) NOT NULL,
+    [PinCode] nvarchar(6) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerAddresses] PRIMARY KEY ([AddressId]),
+    CONSTRAINT [FK_CustomerAddresses_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:12:10.827 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerNominees] (
+    [NomineeId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [NomineeName] nvarchar(100) NOT NULL,
+    [Relation] nvarchar(50) NOT NULL,
+    [SharePercentage] decimal(5,2) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerNominees] PRIMARY KEY ([NomineeId]),
+    CONSTRAINT [FK_CustomerNominees_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:12:10.832 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [HealthProfiles] (
+    [HealthProfileId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [BMI] decimal(5,2) NOT NULL,
+    [IsDiabetic] bit NOT NULL,
+    [HasHypertension] bit NOT NULL,
+    [HasHeartDisease] bit NOT NULL,
+    [IsSmoking] bit NOT NULL,
+    [ConsumesAlcohol] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_HealthProfiles] PRIMARY KEY ([HealthProfileId]),
+    CONSTRAINT [FK_HealthProfiles_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:12:10.837 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Quotes] (
+    [QuoteId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [QuoteDate] datetime2 NOT NULL,
+    [ExpiryDate] datetime2 NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Quotes] PRIMARY KEY ([QuoteId]),
+    CONSTRAINT [FK_Quotes_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Quotes_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId])
+);
+2026-06-06 10:12:10.843 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [UserId] int NOT NULL IDENTITY,
+    [CustomerId] int NULL,
+    [RoleId] int NOT NULL,
+    [FirstName] nvarchar(100) NOT NULL,
+    [LastName] nvarchar(100) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [Password] nvarchar(max) NOT NULL,
+    [IsEmailVerified] bit NOT NULL,
+    [IsTwoFactorEnabled] bit NOT NULL,
+    [IsActive] bit NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([UserId]),
+    CONSTRAINT [FK_Users_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Users_Roles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Roles] ([RoleId])
+);
+2026-06-06 10:12:13.218 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Policies] (
+    [PolicyId] int NOT NULL IDENTITY,
+    [QuoteId] int NULL,
+    [PolicyNumber] nvarchar(50) NOT NULL,
+    [CustomerId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [AgentId] int NULL,
+    [SumInsured] decimal(18,2) NOT NULL,
+    [PolicyStartDate] datetime2 NOT NULL,
+    [PolicyEndDate] datetime2 NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    [ApprovedBy] int NULL,
+    [ApprovedAt] datetime2 NULL,
+    CONSTRAINT [PK_Policies] PRIMARY KEY ([PolicyId]),
+    CONSTRAINT [FK_Policies_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Policies_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Policies_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId]),
+    CONSTRAINT [FK_Policies_Quotes_QuoteId] FOREIGN KEY ([QuoteId]) REFERENCES [Quotes] ([QuoteId])
+);
+2026-06-06 10:12:13.220 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [UnderwritingCases] (
+    [CaseId] int NOT NULL IDENTITY,
+    [QuoteId] int NOT NULL,
+    [RiskCategory] nvarchar(50) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_UnderwritingCases] PRIMARY KEY ([CaseId]),
+    CONSTRAINT [FK_UnderwritingCases_Quotes_QuoteId] FOREIGN KEY ([QuoteId]) REFERENCES [Quotes] ([QuoteId])
+);
+2026-06-06 10:12:13.223 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerKycs] (
+    [KycId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [KycType] nvarchar(50) NOT NULL,
+    [DocumentNumber] nvarchar(50) NOT NULL,
+    [Status] nvarchar(20) NOT NULL,
+    [VerifiedBy] int NULL,
+    [VerifiedDate] datetime2 NULL,
+    [Remarks] nvarchar(500) NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerKycs] PRIMARY KEY ([KycId]),
+    CONSTRAINT [FK_CustomerKycs_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_CustomerKycs_Users_VerifiedBy] FOREIGN KEY ([VerifiedBy]) REFERENCES [Users] ([UserId])
+);
+2026-06-06 10:12:13.226 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [NotificationId] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [Message] nvarchar(1000) NOT NULL,
+    [NotificationType] nvarchar(50) NOT NULL,
+    [IsRead] bit NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([NotificationId]),
+    CONSTRAINT [FK_Notifications_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([UserId])
+);
+2026-06-06 10:12:13.229 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Claims] (
+    [ClaimId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [PolicyId] int NOT NULL,
+    [ClaimAmount] decimal(18,2) NOT NULL,
+    [ClaimReason] nvarchar(500) NOT NULL,
+    [ClaimDate] datetime2 NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Claims] PRIMARY KEY ([ClaimId]),
+    CONSTRAINT [FK_Claims_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Claims_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:16.299 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Commissions] (
+    [CommissionId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [PolicyId] int NOT NULL,
+    [CommissionAmount] decimal(18,2) NOT NULL,
+    [CommissionDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Commissions] PRIMARY KEY ([CommissionId]),
+    CONSTRAINT [FK_Commissions_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Commissions_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:16.308 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Payments] (
+    [PaymentId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [PaymentMode] nvarchar(50) NOT NULL,
+    [PaymentStatus] nvarchar(30) NOT NULL,
+    [TransactionNumber] nvarchar(100) NOT NULL,
+    [PaymentDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Payments] PRIMARY KEY ([PaymentId]),
+    CONSTRAINT [FK_Payments_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:16.313 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PolicyMembers] (
+    [MemberId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Relation] nvarchar(50) NOT NULL,
+    [DOB] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_PolicyMembers] PRIMARY KEY ([MemberId]),
+    CONSTRAINT [FK_PolicyMembers_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:16.317 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PremiumSchedules] (
+    [ScheduleId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [InstallmentNumber] int NOT NULL,
+    [DueDate] datetime2 NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [IsPaid] bit NOT NULL,
+    [PaidDate] datetime2 NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_PremiumSchedules] PRIMARY KEY ([ScheduleId]),
+    CONSTRAINT [FK_PremiumSchedules_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:16.322 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ClaimInvestigations] (
+    [InvestigationId] int NOT NULL IDENTITY,
+    [ClaimId] int NOT NULL,
+    [Remarks] nvarchar(500) NOT NULL,
+    [InvestigationDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ClaimInvestigations] PRIMARY KEY ([InvestigationId]),
+    CONSTRAINT [FK_ClaimInvestigations_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId])
+);
+2026-06-06 10:12:16.328 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ClaimSettlements] (
+    [SettlementId] int NOT NULL IDENTITY,
+    [ClaimId] int NOT NULL,
+    [ApprovedAmount] decimal(18,2) NOT NULL,
+    [SettlementStatus] nvarchar(30) NOT NULL,
+    [SettlementDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ClaimSettlements] PRIMARY KEY ([SettlementId]),
+    CONSTRAINT [FK_ClaimSettlements_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId])
+);
+2026-06-06 10:12:19.331 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Documents] (
+    [DocumentId] int NOT NULL IDENTITY,
+    [ClaimId] int NULL,
+    [CustomerId] int NULL,
+    [PolicyId] int NULL,
+    [EntityType] nvarchar(50) NOT NULL,
+    [FileName] nvarchar(255) NOT NULL,
+    [FilePath] nvarchar(max) NOT NULL,
+    [Status] bit NOT NULL,
+    [UploadDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Documents] PRIMARY KEY ([DocumentId]),
+    CONSTRAINT [FK_Documents_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId]),
+    CONSTRAINT [FK_Documents_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Documents_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:12:19.333 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ClaimInvestigations_ClaimId] ON [ClaimInvestigations] ([ClaimId]);
+2026-06-06 10:12:19.336 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Claims_AgentId] ON [Claims] ([AgentId]);
+2026-06-06 10:12:19.337 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Claims_PolicyId] ON [Claims] ([PolicyId]);
+2026-06-06 10:12:19.338 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ClaimSettlements_ClaimId] ON [ClaimSettlements] ([ClaimId]);
+2026-06-06 10:12:19.339 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Commissions_AgentId] ON [Commissions] ([AgentId]);
+2026-06-06 10:12:19.340 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Commissions_PolicyId] ON [Commissions] ([PolicyId]);
+2026-06-06 10:12:19.342 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerAddresses_CustomerId] ON [CustomerAddresses] ([CustomerId]);
+2026-06-06 10:12:19.344 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerKycs_CustomerId] ON [CustomerKycs] ([CustomerId]);
+2026-06-06 10:12:19.345 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerKycs_VerifiedBy] ON [CustomerKycs] ([VerifiedBy]);
+2026-06-06 10:12:19.346 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerNominees_CustomerId] ON [CustomerNominees] ([CustomerId]);
+2026-06-06 10:12:19.347 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Customers_AgentId] ON [Customers] ([AgentId]);
+2026-06-06 10:12:19.348 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_ClaimId] ON [Documents] ([ClaimId]);
+2026-06-06 10:12:19.349 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_CustomerId] ON [Documents] ([CustomerId]);
+2026-06-06 10:12:19.350 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_PolicyId] ON [Documents] ([PolicyId]);
+2026-06-06 10:12:19.351 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_HealthProfiles_CustomerId] ON [HealthProfiles] ([CustomerId]);
+2026-06-06 10:12:19.352 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_UserId] ON [Notifications] ([UserId]);
+2026-06-06 10:12:19.353 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_PolicyId] ON [Payments] ([PolicyId]);
+2026-06-06 10:12:19.354 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_AgentId] ON [Policies] ([AgentId]);
+2026-06-06 10:12:19.354 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_CustomerId] ON [Policies] ([CustomerId]);
+2026-06-06 10:12:22.307 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_ProductId] ON [Policies] ([ProductId]);
+2026-06-06 10:12:22.309 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_QuoteId] ON [Policies] ([QuoteId]);
+2026-06-06 10:12:22.311 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_PolicyMembers_PolicyId] ON [PolicyMembers] ([PolicyId]);
+2026-06-06 10:12:22.312 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_PremiumSchedules_PolicyId] ON [PremiumSchedules] ([PolicyId]);
+2026-06-06 10:12:22.313 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ProductBenefits_ProductId] ON [ProductBenefits] ([ProductId]);
+2026-06-06 10:12:22.314 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Quotes_CustomerId] ON [Quotes] ([CustomerId]);
+2026-06-06 10:12:22.317 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Quotes_ProductId] ON [Quotes] ([ProductId]);
+2026-06-06 10:12:22.318 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_UnderwritingCases_QuoteId] ON [UnderwritingCases] ([QuoteId]);
+2026-06-06 10:12:22.320 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_CustomerId] ON [Users] ([CustomerId]);
+2026-06-06 10:12:22.322 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_RoleId] ON [Users] ([RoleId]);
+2026-06-06 10:12:22.336 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260606044139_InitialCreate', N'8.0.0');
+2026-06-06 18:38:28.277 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 18:38:28.678 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 18:39:03.850 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 18:39:06.377 +05:30 [INF] Executed DbCommand (57ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 18:39:06.452 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 18:39:06.459 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 18:39:06.462 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 18:39:08.770 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-06-06 18:39:08.790 +05:30 [INF] Applying migration '20260606130829_StatusUpdate'.
+2026-06-06 18:39:09.097 +05:30 [INF] Executed DbCommand (183ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[InsuranceProducts]') AND [c].[name] = N'Status');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [InsuranceProducts] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [InsuranceProducts] ALTER COLUMN [Status] nvarchar(max) NULL;
+2026-06-06 18:39:09.236 +05:30 [INF] Executed DbCommand (138ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Documents]') AND [c].[name] = N'Status');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Documents] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Documents] ALTER COLUMN [Status] nvarchar(max) NULL;
+2026-06-06 18:39:09.250 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260606130829_StatusUpdate', N'8.0.0');
+2026-06-06 20:17:52.443 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:17:52.521 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:17:52.522 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:17:52.917 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:17:52.918 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:17:52.918 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:18:07.940 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:18:07.990 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:18:07.990 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 20:18:08.851 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 20:18:08.903 +05:30 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 20:18:08.907 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 20:18:08.909 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 20:18:08.948 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-06-06 20:18:08.990 +05:30 [INF] Applying migration '20260606144754_QuoteUpdate'.
+2026-06-06 20:18:09.129 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Quotes] ADD [RiskCategory] nvarchar(20) NULL;
+2026-06-06 20:18:09.157 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Quotes] ADD [RiskLoadingPercentage] decimal(18,2) NOT NULL DEFAULT 0.0;
+2026-06-06 20:18:09.172 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Quotes] ADD [SumInsured] decimal(18,2) NOT NULL DEFAULT 0.0;
+2026-06-06 20:18:09.179 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260606144754_QuoteUpdate', N'8.0.0');
+2026-06-06 20:43:29.909 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 20:43:31.084 +05:30 [INF] Application Starting
+2026-06-06 20:43:32.196 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 20:43:32.205 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 20:43:32.346 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 20:43:32.350 +05:30 [INF] Hosting environment: Development
+2026-06-06 20:43:32.353 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 20:43:34.893 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-06 20:43:35.668 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 834.4242ms
+2026-06-06 20:43:35.689 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 20:43:36.101 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-06 20:43:36.103 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-06 20:43:36.103 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-06 20:43:36.135 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 20:43:36.169 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 479.9787ms
+2026-06-06 20:43:36.137 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 20:43:36.242 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 107.5571ms
+2026-06-06 20:43:36.365 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-06 20:43:36.372 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 268.1779ms
+2026-06-06 20:43:36.365 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-06 20:43:36.409 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 309.1352ms
+2026-06-06 20:43:36.548 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-06 20:43:36.568 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 467.7258ms
+2026-06-06 20:43:36.692 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 555.3831ms
+2026-06-06 20:43:37.273 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 20:43:37.330 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 57.9134ms
+2026-06-06 20:43:37.360 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-06 20:43:37.371 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-06 20:43:37.376 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 16.3244ms
+2026-06-06 20:44:46.344 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/generate - application/json 219
+2026-06-06 20:44:46.406 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 20:44:46.461 +05:30 [INF] Route matched with {action = "GenerateQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GenerateQuote(Insurance.Application.DTOs.Quote.CreateQuoteDto) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 20:44:47.022 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API) in 542.1102ms
+2026-06-06 20:44:47.035 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 20:44:47.269 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/generate - 500 null application/json 926.1854ms
+2026-06-06 20:57:53.490 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 20:57:54.591 +05:30 [INF] Application Starting
+2026-06-06 20:57:59.772 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 20:57:59.902 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 20:58:00.897 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 20:58:00.907 +05:30 [INF] Hosting environment: Development
+2026-06-06 20:58:00.919 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 20:58:00.989 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 20:58:02.563 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 20:58:02.563 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 20:58:02.603 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 1722.778ms
+2026-06-06 20:58:02.679 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 115.9976ms
+2026-06-06 20:58:02.906 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 343.8974ms
+2026-06-06 20:58:04.188 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 20:58:04.247 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 61.2827ms
+2026-06-06 20:59:41.787 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/generate - application/json 219
+2026-06-06 20:59:41.831 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 20:59:41.931 +05:30 [INF] Route matched with {action = "GenerateQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GenerateQuote(Insurance.Application.DTOs.Quote.CreateQuoteDto) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 20:59:45.437 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API) in 3483.8367ms
+2026-06-06 20:59:45.452 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 20:59:45.673 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/generate - 500 null application/json 3886.2566ms
+2026-06-06 21:08:01.578 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 21:08:02.366 +05:30 [INF] Application Starting
+2026-06-06 21:08:03.783 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 21:08:03.803 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 21:08:04.149 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 21:08:04.160 +05:30 [INF] Hosting environment: Development
+2026-06-06 21:08:04.165 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 21:08:05.902 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 21:08:07.372 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 21:08:07.372 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 21:08:07.441 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 1617.7595ms
+2026-06-06 21:08:07.601 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 229.8243ms
+2026-06-06 21:08:07.828 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 456.9319ms
+2026-06-06 21:08:08.090 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 21:08:08.195 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.4508ms
+2026-06-06 21:08:58.193 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/generate - application/json 219
+2026-06-06 21:08:58.277 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 21:08:58.511 +05:30 [INF] Route matched with {action = "GenerateQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GenerateQuote(Insurance.Application.DTOs.Quote.CreateQuoteDto) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 21:09:00.451 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API) in 1907.4919ms
+2026-06-06 21:09:00.469 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 21:09:00.823 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/generate - 500 null application/json 2630.207ms
+2026-06-06 21:27:25.299 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 21:27:25.949 +05:30 [INF] Application Starting
+2026-06-06 21:27:27.493 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 21:27:27.511 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 21:27:27.844 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 21:27:27.931 +05:30 [INF] Hosting environment: Development
+2026-06-06 21:27:27.937 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 21:27:30.022 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 21:27:34.134 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 4156.8321ms
+2026-06-06 21:27:34.495 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 21:27:34.503 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 21:27:34.692 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 197.4172ms
+2026-06-06 21:27:35.027 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 525.6662ms
+2026-06-06 21:27:35.869 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 21:27:35.930 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 78.5679ms
+2026-06-06 21:28:24.402 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/generate - application/json 219
+2026-06-06 21:28:24.485 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 21:28:24.610 +05:30 [INF] Route matched with {action = "GenerateQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GenerateQuote(Insurance.Application.DTOs.Quote.CreateQuoteDto) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 21:28:26.220 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 21:28:27.779 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 21:28:27.789 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 21:28:27.797 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 21:28:30.463 +05:30 [INF] Executed DbCommand (357ms) [Parameters=[@__dto_CustomerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CustomerId], [c].[AadharNumber], [c].[AgentId], [c].[CreatedAt], [c].[CreatedBy], [c].[CustomerCode], [c].[DOB], [c].[Email], [c].[FirstName], [c].[Gender], [c].[IsDeleted], [c].[LastName], [c].[MobileNumber], [c].[ModifiedAt], [c].[ModifiedBy], [c].[PANNumber]
+FROM [Customers] AS [c]
+WHERE [c].[CustomerId] = @__dto_CustomerId_0
+2026-06-06 21:28:30.776 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__dto_ProductId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[BenefitId], [p].[BaseRate], [p].[BenefitName], [p].[CreatedAt], [p].[CreatedBy], [p].[Maximum], [p].[Minimum], [p].[ModifiedAt], [p].[ModifiedBy], [p].[ProductId]
+FROM [ProductBenefits] AS [p]
+WHERE [p].[ProductId] = @__dto_ProductId_0
+2026-06-06 21:28:31.498 +05:30 [INF] Executed DbCommand (60ms) [Parameters=[@p0='?' (Precision = 5) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [HealthProfiles] ([BMI], [ConsumesAlcohol], [CreatedAt], [CreatedBy], [CustomerId], [HasHeartDisease], [HasHypertension], [IsDiabetic], [IsSmoking], [ModifiedAt], [ModifiedBy])
+OUTPUT INSERTED.[HealthProfileId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-06-06 21:28:31.712 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = Int32), @p6='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime2), @p9='?' (Size = 20), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (Size = 30), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Quotes] ([CreatedAt], [CreatedBy], [CustomerId], [ExpiryDate], [ModifiedAt], [ModifiedBy], [PremiumAmount], [ProductId], [QuoteDate], [RiskCategory], [RiskLoadingPercentage], [Status], [SumInsured])
+OUTPUT INSERTED.[QuoteId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-06-06 21:28:31.794 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [UnderwritingCases] ([CreatedAt], [CreatedBy], [ModifiedAt], [ModifiedBy], [QuoteId], [RiskCategory])
+OUTPUT INSERTED.[CaseId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-06-06 21:28:31.843 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 21:28:31.889 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API) in 7257.5932ms
+2026-06-06 21:28:31.899 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 21:28:31.922 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/generate - 200 null application/json; charset=utf-8 7523.9035ms
+2026-06-06 22:31:11.723 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 22:31:12.049 +05:30 [INF] Application Starting
+2026-06-06 22:31:12.775 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 22:31:12.785 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 22:31:12.897 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 22:31:12.901 +05:30 [INF] Hosting environment: Development
+2026-06-06 22:31:12.904 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 22:31:14.304 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 22:31:14.841 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 586.6832ms
+2026-06-06 22:31:14.851 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 22:31:14.851 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 22:31:14.905 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 56.3468ms
+2026-06-06 22:31:15.129 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 277.7301ms
+2026-06-06 22:31:15.222 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 22:31:15.257 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 35.6996ms
+2026-06-06 22:31:55.487 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/generate - application/json 219
+2026-06-06 22:31:55.507 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 22:31:55.554 +05:30 [INF] Route matched with {action = "GenerateQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GenerateQuote(Insurance.Application.DTOs.Quote.CreateQuoteDto) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 22:31:55.945 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 22:31:57.235 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:31:57.240 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:31:57.246 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:31:59.365 +05:30 [INF] Executed DbCommand (136ms) [Parameters=[@__dto_CustomerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CustomerId], [c].[AadharNumber], [c].[AgentId], [c].[CreatedAt], [c].[CreatedBy], [c].[CustomerCode], [c].[DOB], [c].[Email], [c].[FirstName], [c].[Gender], [c].[IsDeleted], [c].[LastName], [c].[MobileNumber], [c].[ModifiedAt], [c].[ModifiedBy], [c].[PANNumber]
+FROM [Customers] AS [c]
+WHERE [c].[CustomerId] = @__dto_CustomerId_0
+2026-06-06 22:31:59.667 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__dto_ProductId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [i].[ProductId], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[ModifiedAt], [i].[ModifiedBy], [i].[ProductName], [i].[ProductType], [i].[Status]
+FROM [InsuranceProducts] AS [i]
+WHERE [i].[ProductId] = @__dto_ProductId_0
+2026-06-06 22:31:59.721 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__dto_ProductId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[BenefitId], [p].[BaseRate], [p].[BenefitName], [p].[CreatedAt], [p].[CreatedBy], [p].[Maximum], [p].[Minimum], [p].[ModifiedAt], [p].[ModifiedBy], [p].[ProductId]
+FROM [ProductBenefits] AS [p]
+WHERE [p].[ProductId] = @__dto_ProductId_0
+2026-06-06 22:32:00.199 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@p0='?' (Precision = 5) (Scale = 2) (DbType = Decimal), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [HealthProfiles] ([BMI], [ConsumesAlcohol], [CreatedAt], [CreatedBy], [CustomerId], [HasHeartDisease], [HasHypertension], [IsDiabetic], [IsSmoking], [ModifiedAt], [ModifiedBy])
+OUTPUT INSERTED.[HealthProfileId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-06-06 22:32:00.338 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = Int32), @p6='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime2), @p9='?' (Size = 20), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (Size = 30), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Quotes] ([CreatedAt], [CreatedBy], [CustomerId], [ExpiryDate], [ModifiedAt], [ModifiedBy], [PremiumAmount], [ProductId], [QuoteDate], [RiskCategory], [RiskLoadingPercentage], [Status], [SumInsured])
+OUTPUT INSERTED.[QuoteId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-06-06 22:32:00.407 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [UnderwritingCases] ([CreatedAt], [CreatedBy], [ModifiedAt], [ModifiedBy], [QuoteId], [RiskCategory])
+OUTPUT INSERTED.[CaseId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-06-06 22:32:00.464 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 22:32:00.506 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API) in 4940.7699ms
+2026-06-06 22:32:00.513 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GenerateQuote (Insurance.API)'
+2026-06-06 22:32:00.536 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/generate - 200 null application/json; charset=utf-8 5048.9192ms
+2026-06-06 22:39:52.871 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 22:39:52.920 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 49.9871ms
+2026-06-06 22:39:52.945 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 22:39:52.945 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 22:39:52.960 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 15.1263ms
+2026-06-06 22:39:52.970 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.2825ms
+2026-06-06 22:39:53.063 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 22:39:53.079 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 16.3953ms
+2026-06-06 22:40:21.764 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 22:40:22.163 +05:30 [INF] Application Starting
+2026-06-06 22:40:22.702 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 22:40:22.710 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 22:40:22.869 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 22:40:22.874 +05:30 [INF] Hosting environment: Development
+2026-06-06 22:40:22.879 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 22:40:24.124 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 22:40:25.064 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 22:40:25.064 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 22:40:25.082 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 1004.1259ms
+2026-06-06 22:40:25.125 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 61.5984ms
+2026-06-06 22:40:25.391 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 326.1402ms
+2026-06-06 22:40:25.613 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 22:40:25.688 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 75.2776ms
+2026-06-06 22:40:34.618 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/Quote - null null
+2026-06-06 22:40:34.631 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GetAllQuotes (Insurance.API)'
+2026-06-06 22:40:34.660 +05:30 [INF] Route matched with {action = "GetAllQuotes", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuotes() on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 22:40:35.046 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 22:40:36.050 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:40:36.055 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:40:36.060 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:40:37.397 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+2026-06-06 22:40:37.509 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 22:40:37.549 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GetAllQuotes (Insurance.API) in 2877.515ms
+2026-06-06 22:40:37.555 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GetAllQuotes (Insurance.API)'
+2026-06-06 22:40:37.575 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/Quote - 200 null application/json; charset=utf-8 2957.1602ms
+2026-06-06 22:49:49.549 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 22:49:50.017 +05:30 [INF] Application Starting
+2026-06-06 22:49:50.672 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 22:49:50.679 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 22:49:51.134 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 22:49:51.139 +05:30 [INF] Hosting environment: Development
+2026-06-06 22:49:51.142 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 22:49:51.939 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 22:49:52.728 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 22:49:52.728 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 22:49:52.749 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 860.5799ms
+2026-06-06 22:49:52.768 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 43.0018ms
+2026-06-06 22:49:53.003 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 277.8627ms
+2026-06-06 22:49:53.174 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 22:49:53.233 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 60.0498ms
+2026-06-06 22:50:14.444 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/Quote/5/premium-breakdown - null null
+2026-06-06 22:50:14.461 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GetPremiumBreakdown (Insurance.API)'
+2026-06-06 22:50:14.515 +05:30 [INF] Route matched with {action = "GetPremiumBreakdown", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPremiumBreakdown(Int32) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 22:50:14.967 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 22:50:16.160 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:50:16.166 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:50:16.171 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 22:50:17.923 +05:30 [INF] Executed DbCommand (105ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-06 22:50:18.192 +05:30 [INF] Executed DbCommand (20ms) [Parameters=[@__quote_ProductId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [i].[ProductId], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[ModifiedAt], [i].[ModifiedBy], [i].[ProductName], [i].[ProductType], [i].[Status]
+FROM [InsuranceProducts] AS [i]
+WHERE [i].[ProductId] = @__quote_ProductId_0
+2026-06-06 22:50:18.304 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__quote_ProductId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[BenefitId], [p].[BaseRate], [p].[BenefitName], [p].[CreatedAt], [p].[CreatedBy], [p].[Maximum], [p].[Minimum], [p].[ModifiedAt], [p].[ModifiedBy], [p].[ProductId]
+FROM [ProductBenefits] AS [p]
+WHERE [p].[ProductId] = @__quote_ProductId_0
+2026-06-06 22:50:18.372 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__quote_CustomerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CustomerId], [c].[AadharNumber], [c].[AgentId], [c].[CreatedAt], [c].[CreatedBy], [c].[CustomerCode], [c].[DOB], [c].[Email], [c].[FirstName], [c].[Gender], [c].[IsDeleted], [c].[LastName], [c].[MobileNumber], [c].[ModifiedAt], [c].[ModifiedBy], [c].[PANNumber]
+FROM [Customers] AS [c]
+WHERE [c].[CustomerId] = @__quote_CustomerId_0
+2026-06-06 22:50:18.541 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@__quote_CustomerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [h].[HealthProfileId], [h].[BMI], [h].[ConsumesAlcohol], [h].[CreatedAt], [h].[CreatedBy], [h].[CustomerId], [h].[HasHeartDisease], [h].[HasHypertension], [h].[IsDiabetic], [h].[IsSmoking], [h].[ModifiedAt], [h].[ModifiedBy]
+FROM [HealthProfiles] AS [h]
+WHERE [h].[CustomerId] = @__quote_CustomerId_0
+2026-06-06 22:50:18.633 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Quote.PremiumBreakdownDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-06 22:50:18.707 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GetPremiumBreakdown (Insurance.API) in 4177.6246ms
+2026-06-06 22:50:18.717 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GetPremiumBreakdown (Insurance.API)'
+2026-06-06 22:50:18.749 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/Quote/5/premium-breakdown - 200 null application/json; charset=utf-8 4305.0417ms
+2026-06-06 23:08:22.331 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:08:22.826 +05:30 [INF] Application Starting
+2026-06-06 23:08:23.459 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:08:23.467 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:08:23.547 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:08:23.551 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:08:23.555 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:08:24.791 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:08:25.547 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:08:25.573 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 831.6679ms
+2026-06-06 23:08:25.742 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:08:25.844 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 297.8316ms
+2026-06-06 23:08:25.877 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 136.8096ms
+2026-06-06 23:08:26.028 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:08:26.093 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 65.5256ms
+2026-06-06 23:08:45.586 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/Quote/9 - null null
+2026-06-06 23:08:45.599 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GetQuotesByCustomerId (Insurance.API)'
+2026-06-06 23:08:45.635 +05:30 [INF] Route matched with {action = "GetQuotesByCustomerId", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuotesByCustomerId(Int32) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 23:08:46.220 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 23:08:47.496 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:08:47.501 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:08:47.506 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:08:49.017 +05:30 [INF] Executed DbCommand (81ms) [Parameters=[@__customerId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[CustomerId] = @__customerId_0
+2026-06-06 23:08:49.087 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 23:08:49.121 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GetQuotesByCustomerId (Insurance.API) in 3476.1272ms
+2026-06-06 23:08:49.126 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GetQuotesByCustomerId (Insurance.API)'
+2026-06-06 23:08:49.142 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/Quote/9 - 200 null application/json; charset=utf-8 3561.5906ms
+2026-06-06 23:13:38.570 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:13:38.898 +05:30 [INF] Application Starting
+2026-06-06 23:13:39.389 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:13:39.398 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:13:39.507 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:13:39.511 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:13:39.514 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:13:40.718 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:13:41.383 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:13:41.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:13:41.388 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 705.6413ms
+2026-06-06 23:13:41.432 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 45.0173ms
+2026-06-06 23:13:41.588 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 207.5611ms
+2026-06-06 23:13:41.740 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:13:41.778 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 39.5247ms
+2026-06-06 23:14:19.185 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/5/accept - null 0
+2026-06-06 23:14:19.201 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.AcceptQuote (Insurance.API)'
+2026-06-06 23:14:19.237 +05:30 [INF] Route matched with {action = "AcceptQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AcceptQuote(Int32) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 23:14:19.560 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 23:14:20.743 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:14:20.749 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:14:20.754 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:14:22.034 +05:30 [INF] Executed DbCommand (60ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-06 23:14:22.387 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@p13='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = Int32), @p6='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime2), @p9='?' (Size = 20), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (Size = 30), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Quotes] SET [CreatedAt] = @p0, [CreatedBy] = @p1, [CustomerId] = @p2, [ExpiryDate] = @p3, [ModifiedAt] = @p4, [ModifiedBy] = @p5, [PremiumAmount] = @p6, [ProductId] = @p7, [QuoteDate] = @p8, [RiskCategory] = @p9, [RiskLoadingPercentage] = @p10, [Status] = @p11, [SumInsured] = @p12
+OUTPUT 1
+WHERE [QuoteId] = @p13;
+2026-06-06 23:14:22.437 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 23:14:22.490 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.AcceptQuote (Insurance.API) in 3232.6764ms
+2026-06-06 23:14:22.498 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.AcceptQuote (Insurance.API)'
+2026-06-06 23:14:22.529 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/5/accept - 200 null application/json; charset=utf-8 3342.3124ms
+2026-06-06 23:17:28.935 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:17:29.365 +05:30 [INF] Application Starting
+2026-06-06 23:17:29.862 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:17:29.870 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:17:29.967 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:17:29.971 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:17:29.973 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:17:31.170 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:17:31.809 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:17:31.809 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:17:31.816 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 678.774ms
+2026-06-06 23:17:31.860 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 50.5314ms
+2026-06-06 23:17:32.059 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 249.2833ms
+2026-06-06 23:17:32.213 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:17:32.261 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 48.7875ms
+2026-06-06 23:17:42.178 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/Quote/5/reject - null 0
+2026-06-06 23:17:42.204 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.RejectQuote (Insurance.API)'
+2026-06-06 23:17:42.250 +05:30 [INF] Route matched with {action = "RejectQuote", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RejectQuote(Int32) on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 23:17:42.581 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 23:17:43.720 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:17:43.726 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:17:43.732 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:17:44.982 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-06 23:17:45.401 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.RejectQuote (Insurance.API) in 3138.4894ms
+2026-06-06 23:17:45.408 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.RejectQuote (Insurance.API)'
+2026-06-06 23:17:45.574 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/Quote/5/reject - 500 null application/json 3395.423ms
+2026-06-06 23:21:08.551 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:21:08.920 +05:30 [INF] Application Starting
+2026-06-06 23:21:09.364 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:21:09.371 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:21:09.430 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:21:09.433 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:21:09.436 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:21:10.625 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:21:11.094 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 499.1659ms
+2026-06-06 23:21:11.107 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:21:11.108 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:21:11.166 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 60.7956ms
+2026-06-06 23:21:11.317 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 220.8877ms
+2026-06-06 23:21:11.454 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:21:11.490 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Quote" for actions - Insurance.API.Controllers.QuoteController.GetAllQuotes (Insurance.API),Insurance.API.Controllers.QuoteController.GetQuotes (Insurance.API). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-06 23:21:11.516 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 63.48ms
+2026-06-06 23:22:56.885 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:22:57.303 +05:30 [INF] Application Starting
+2026-06-06 23:22:57.790 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:22:57.798 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:22:57.868 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:22:57.872 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:22:57.875 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:22:58.730 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:22:59.239 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:22:59.239 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:22:59.258 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 566.6256ms
+2026-06-06 23:22:59.306 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 67.8658ms
+2026-06-06 23:22:59.515 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 276.6909ms
+2026-06-06 23:22:59.687 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:22:59.753 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Quote" for actions - Insurance.API.Controllers.QuoteController.GetAllQuotes (Insurance.API),Insurance.API.Controllers.QuoteController.GetQuotes (Insurance.API). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-06 23:22:59.777 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 90.7623ms
+2026-06-06 23:23:37.204 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:23:37.495 +05:30 [INF] Application Starting
+2026-06-06 23:23:37.931 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:23:37.939 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:23:37.996 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:23:37.999 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:23:38.001 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:23:39.229 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:23:39.770 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 577.1855ms
+2026-06-06 23:23:39.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:23:39.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:23:39.798 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 24.525ms
+2026-06-06 23:23:39.969 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 195.3424ms
+2026-06-06 23:23:40.135 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:23:40.203 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 69.0392ms
+2026-06-06 23:23:47.995 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/Quote/pending - null null
+2026-06-06 23:23:48.016 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GetPendingQuotes (Insurance.API)'
+2026-06-06 23:23:48.054 +05:30 [INF] Route matched with {action = "GetPendingQuotes", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPendingQuotes() on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 23:23:48.554 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 23:23:49.787 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:23:49.794 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:23:49.798 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:23:51.319 +05:30 [INF] Executed DbCommand (267ms) [Parameters=[@__status_0='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SELECT [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[Status] = @__status_0
+2026-06-06 23:23:51.455 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 23:23:51.509 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GetPendingQuotes (Insurance.API) in 3438.0171ms
+2026-06-06 23:23:51.515 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GetPendingQuotes (Insurance.API)'
+2026-06-06 23:23:51.541 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/Quote/pending - 200 null application/json; charset=utf-8 3545.8696ms
+2026-06-06 23:24:23.139 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 23:24:23.400 +05:30 [INF] Application Starting
+2026-06-06 23:24:23.794 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 23:24:23.802 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 23:24:24.095 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 23:24:24.102 +05:30 [INF] Hosting environment: Development
+2026-06-06 23:24:24.113 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 23:24:24.976 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 23:24:25.685 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 23:24:25.685 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 23:24:25.689 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 747.4976ms
+2026-06-06 23:24:25.738 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 52.9184ms
+2026-06-06 23:24:25.940 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 254.7436ms
+2026-06-06 23:24:26.084 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 23:24:26.197 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 113.4628ms
+2026-06-06 23:24:33.817 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/Quote/accepted - null null
+2026-06-06 23:24:33.833 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.QuoteController.GetAcceptedQuotes (Insurance.API)'
+2026-06-06 23:24:33.859 +05:30 [INF] Route matched with {action = "GetAcceptedQuotes", controller = "Quote"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAcceptedQuotes() on controller Insurance.API.Controllers.QuoteController (Insurance.API).
+2026-06-06 23:24:34.223 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-06 23:24:35.416 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:24:35.421 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:24:35.426 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 23:24:36.782 +05:30 [INF] Executed DbCommand (87ms) [Parameters=[@__status_0='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SELECT [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[Status] = @__status_0
+2026-06-06 23:24:36.934 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.Collections.Generic.List`1[[Insurance.Application.DTOs.Quote.QuoteResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-06 23:24:37.002 +05:30 [INF] Executed action Insurance.API.Controllers.QuoteController.GetAcceptedQuotes (Insurance.API) in 3126.4713ms
+2026-06-06 23:24:37.008 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.QuoteController.GetAcceptedQuotes (Insurance.API)'
+2026-06-06 23:24:37.040 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/Quote/accepted - 200 null application/json; charset=utf-8 3222.5423ms

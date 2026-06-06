@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insurance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260605132632_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260606144754_QuoteUpdate")]
+    partial class QuoteUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -509,8 +509,8 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<int?>("PolicyId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
@@ -608,8 +608,8 @@ namespace Insurance.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 
@@ -960,10 +960,20 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<DateTime>("QuoteDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("RiskCategory")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("RiskLoadingPercentage")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<decimal>("SumInsured")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("QuoteId");
 

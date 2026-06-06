@@ -20,7 +20,8 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Payment Status is Required")]
         [StringLength(30)]
-        public string? PaymentStatus { get; set; }
+        public string? PaymentStatus { get; set; } = "Pending";
+
         [Required(ErrorMessage = "Transaction Number is Required")]
         [StringLength(100)]
         public string? TransactionNumber { get; set; }
