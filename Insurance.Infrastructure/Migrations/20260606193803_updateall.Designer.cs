@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insurance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260605132632_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260606193803_updateall")]
+    partial class updateall
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -960,10 +960,20 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<DateTime>("QuoteDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("RiskCategory")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("RiskLoadingPercentage")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<decimal>("SumInsured")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("QuoteId");
 

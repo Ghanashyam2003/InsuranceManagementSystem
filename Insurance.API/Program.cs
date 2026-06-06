@@ -1,14 +1,13 @@
+using Asp.Versioning;
 using Insurance.API.Middleware;
+using Insurance.Application.Interface;
 using Insurance.Application.Mappings;
 using Insurance.Infrastructure.Data;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 using Microsoft.AspNetCore.RateLimiting;
+using Serilog;
 using System.Threading.RateLimiting;
-using Asp.Versioning;
-
-
+using Insurance.Infrastructure.Repository;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -18,23 +17,35 @@ Log.Logger = new LoggerConfiguration()
         rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Host.UseSerilog();
 
-builder.Services.AddRateLimiter(options =>
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(cfg =>
 {
-    options.AddFixedWindowLimiter(
-        "fixed",
-        limiterOptions =>
-        {
-            limiterOptions.PermitLimit = 5;
-            limiterOptions.Window = TimeSpan.FromMinutes(1);
-            limiterOptions.QueueLimit = 0;
-        });
+    cfg.AddProfile<MappingProfile>();
+});
+//builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddMemoryCache();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
 });
 
 builder.Services.AddRateLimiter(options =>
@@ -49,41 +60,16 @@ builder.Services.AddRateLimiter(options =>
         });
 });
 
-builder.Host.UseSerilog();
+/* SERVICES */
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
 
 
-
-
-builder.Services.AddControllers();
-
-builder.Services.AddApiVersioning(options =>
-{
-    options.DefaultApiVersion = new ApiVersion(1, 0);
-
-    options.AssumeDefaultVersionWhenUnspecified = true;
-
-    options.ReportApiVersions = true;
-
-    options.ApiVersionReader =
-        new UrlSegmentApiVersionReader();
-});
-
-builder.Services.AddMemoryCache();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 Log.Information("Insurance API Started Successfully");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -98,14 +84,11 @@ app.UseAuthorization();
 
 app.UseRateLimiter();
 
-
-
 app.MapControllers();
 
 try
 {
     Log.Information("Application Starting");
-
     app.Run();
 }
 catch (Exception ex)

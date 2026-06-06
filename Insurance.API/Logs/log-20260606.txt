@@ -29,3 +29,469 @@
 2026-06-06 00:00:39.176 +09:00 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 18.7697ms
 2026-06-06 00:00:39.182 +09:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
 2026-06-06 00:00:39.190 +09:00 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 16.957ms
+2026-06-06 10:17:03.871 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:17:04.348 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:17:42.490 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:17:43.640 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-06 10:17:44.350 +05:30 [INF] Executed DbCommand (603ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [InsuranceDB];
+2026-06-06 10:17:44.557 +05:30 [INF] Executed DbCommand (201ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [InsuranceDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-06-06 10:17:44.593 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 10:17:44.704 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2026-06-06 10:17:44.706 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-06 10:17:44.736 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-06 10:17:44.794 +05:30 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-06-06 10:17:44.822 +05:30 [INF] Applying migration '20260606044705_InitialCreate'.
+2026-06-06 10:17:45.042 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Agents] (
+    [AgentId] int NOT NULL IDENTITY,
+    [AgentCode] nvarchar(20) NOT NULL,
+    [AgentName] nvarchar(150) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [MobileNumber] nvarchar(10) NOT NULL,
+    [IsActive] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Agents] PRIMARY KEY ([AgentId])
+);
+2026-06-06 10:17:45.053 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [InsuranceProducts] (
+    [ProductId] int NOT NULL IDENTITY,
+    [ProductName] nvarchar(150) NOT NULL,
+    [ProductType] nvarchar(50) NOT NULL,
+    [Description] nvarchar(max) NULL,
+    [Status] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_InsuranceProducts] PRIMARY KEY ([ProductId])
+);
+2026-06-06 10:17:45.057 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Roles] (
+    [RoleId] int NOT NULL IDENTITY,
+    [RoleName] nvarchar(50) NOT NULL,
+    [IsActive] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Roles] PRIMARY KEY ([RoleId])
+);
+2026-06-06 10:17:45.064 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Customers] (
+    [CustomerId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [CustomerCode] nvarchar(20) NOT NULL,
+    [FirstName] nvarchar(100) NOT NULL,
+    [LastName] nvarchar(100) NOT NULL,
+    [DOB] datetime2 NOT NULL,
+    [Gender] nvarchar(20) NOT NULL,
+    [MobileNumber] nvarchar(10) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [PANNumber] nvarchar(10) NOT NULL,
+    [AadharNumber] nvarchar(12) NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([CustomerId]),
+    CONSTRAINT [FK_Customers_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId])
+);
+2026-06-06 10:17:45.070 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ProductBenefits] (
+    [BenefitId] int NOT NULL IDENTITY,
+    [ProductId] int NOT NULL,
+    [BenefitName] nvarchar(150) NOT NULL,
+    [BaseRate] decimal(18,2) NOT NULL,
+    [Minimum] decimal(18,2) NOT NULL,
+    [Maximum] decimal(18,2) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ProductBenefits] PRIMARY KEY ([BenefitId]),
+    CONSTRAINT [FK_ProductBenefits_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId])
+);
+2026-06-06 10:17:45.076 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [AddressLine1] nvarchar(200) NOT NULL,
+    [AddressLine2] nvarchar(200) NULL,
+    [City] nvarchar(100) NOT NULL,
+    [State] nvarchar(100) NOT NULL,
+    [PinCode] nvarchar(6) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerAddresses] PRIMARY KEY ([AddressId]),
+    CONSTRAINT [FK_CustomerAddresses_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:17:45.080 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerNominees] (
+    [NomineeId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [NomineeName] nvarchar(100) NOT NULL,
+    [Relation] nvarchar(50) NOT NULL,
+    [SharePercentage] decimal(5,2) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerNominees] PRIMARY KEY ([NomineeId]),
+    CONSTRAINT [FK_CustomerNominees_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:17:45.327 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [HealthProfiles] (
+    [HealthProfileId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [BMI] decimal(5,2) NOT NULL,
+    [IsDiabetic] bit NOT NULL,
+    [HasHypertension] bit NOT NULL,
+    [HasHeartDisease] bit NOT NULL,
+    [IsSmoking] bit NOT NULL,
+    [ConsumesAlcohol] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_HealthProfiles] PRIMARY KEY ([HealthProfileId]),
+    CONSTRAINT [FK_HealthProfiles_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId])
+);
+2026-06-06 10:17:45.330 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Quotes] (
+    [QuoteId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [QuoteDate] datetime2 NOT NULL,
+    [ExpiryDate] datetime2 NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Quotes] PRIMARY KEY ([QuoteId]),
+    CONSTRAINT [FK_Quotes_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Quotes_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId])
+);
+2026-06-06 10:17:45.334 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [UserId] int NOT NULL IDENTITY,
+    [CustomerId] int NULL,
+    [RoleId] int NOT NULL,
+    [FirstName] nvarchar(100) NOT NULL,
+    [LastName] nvarchar(100) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [Password] nvarchar(max) NOT NULL,
+    [IsEmailVerified] bit NOT NULL,
+    [IsTwoFactorEnabled] bit NOT NULL,
+    [IsActive] bit NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([UserId]),
+    CONSTRAINT [FK_Users_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Users_Roles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Roles] ([RoleId])
+);
+2026-06-06 10:17:45.341 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Policies] (
+    [PolicyId] int NOT NULL IDENTITY,
+    [QuoteId] int NULL,
+    [PolicyNumber] nvarchar(50) NOT NULL,
+    [CustomerId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [AgentId] int NULL,
+    [SumInsured] decimal(18,2) NOT NULL,
+    [PolicyStartDate] datetime2 NOT NULL,
+    [PolicyEndDate] datetime2 NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    [ApprovedBy] int NULL,
+    [ApprovedAt] datetime2 NULL,
+    CONSTRAINT [PK_Policies] PRIMARY KEY ([PolicyId]),
+    CONSTRAINT [FK_Policies_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Policies_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Policies_InsuranceProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [InsuranceProducts] ([ProductId]),
+    CONSTRAINT [FK_Policies_Quotes_QuoteId] FOREIGN KEY ([QuoteId]) REFERENCES [Quotes] ([QuoteId])
+);
+2026-06-06 10:17:45.346 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [UnderwritingCases] (
+    [CaseId] int NOT NULL IDENTITY,
+    [QuoteId] int NOT NULL,
+    [RiskCategory] nvarchar(50) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_UnderwritingCases] PRIMARY KEY ([CaseId]),
+    CONSTRAINT [FK_UnderwritingCases_Quotes_QuoteId] FOREIGN KEY ([QuoteId]) REFERENCES [Quotes] ([QuoteId])
+);
+2026-06-06 10:17:48.635 +05:30 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CustomerKycs] (
+    [KycId] int NOT NULL IDENTITY,
+    [CustomerId] int NOT NULL,
+    [KycType] nvarchar(50) NOT NULL,
+    [DocumentNumber] nvarchar(50) NOT NULL,
+    [Status] nvarchar(20) NOT NULL,
+    [VerifiedBy] int NULL,
+    [VerifiedDate] datetime2 NULL,
+    [Remarks] nvarchar(500) NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_CustomerKycs] PRIMARY KEY ([KycId]),
+    CONSTRAINT [FK_CustomerKycs_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_CustomerKycs_Users_VerifiedBy] FOREIGN KEY ([VerifiedBy]) REFERENCES [Users] ([UserId])
+);
+2026-06-06 10:17:48.665 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [NotificationId] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [Message] nvarchar(1000) NOT NULL,
+    [NotificationType] nvarchar(50) NOT NULL,
+    [IsRead] bit NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Notifications] PRIMARY KEY ([NotificationId]),
+    CONSTRAINT [FK_Notifications_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([UserId])
+);
+2026-06-06 10:17:48.682 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Claims] (
+    [ClaimId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [PolicyId] int NOT NULL,
+    [ClaimAmount] decimal(18,2) NOT NULL,
+    [ClaimReason] nvarchar(500) NOT NULL,
+    [ClaimDate] datetime2 NOT NULL,
+    [Status] nvarchar(30) NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Claims] PRIMARY KEY ([ClaimId]),
+    CONSTRAINT [FK_Claims_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Claims_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:48.688 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Commissions] (
+    [CommissionId] int NOT NULL IDENTITY,
+    [AgentId] int NOT NULL,
+    [PolicyId] int NOT NULL,
+    [CommissionAmount] decimal(18,2) NOT NULL,
+    [CommissionDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Commissions] PRIMARY KEY ([CommissionId]),
+    CONSTRAINT [FK_Commissions_Agents_AgentId] FOREIGN KEY ([AgentId]) REFERENCES [Agents] ([AgentId]),
+    CONSTRAINT [FK_Commissions_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:48.693 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Payments] (
+    [PaymentId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [PaymentMode] nvarchar(50) NOT NULL,
+    [PaymentStatus] nvarchar(30) NOT NULL,
+    [TransactionNumber] nvarchar(100) NOT NULL,
+    [PaymentDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Payments] PRIMARY KEY ([PaymentId]),
+    CONSTRAINT [FK_Payments_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:48.697 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PolicyMembers] (
+    [MemberId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Relation] nvarchar(50) NOT NULL,
+    [DOB] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_PolicyMembers] PRIMARY KEY ([MemberId]),
+    CONSTRAINT [FK_PolicyMembers_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:51.480 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PremiumSchedules] (
+    [ScheduleId] int NOT NULL IDENTITY,
+    [PolicyId] int NOT NULL,
+    [InstallmentNumber] int NOT NULL,
+    [DueDate] datetime2 NOT NULL,
+    [PremiumAmount] decimal(18,2) NOT NULL,
+    [IsPaid] bit NOT NULL,
+    [PaidDate] datetime2 NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_PremiumSchedules] PRIMARY KEY ([ScheduleId]),
+    CONSTRAINT [FK_PremiumSchedules_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:51.484 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ClaimInvestigations] (
+    [InvestigationId] int NOT NULL IDENTITY,
+    [ClaimId] int NOT NULL,
+    [Remarks] nvarchar(500) NOT NULL,
+    [InvestigationDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ClaimInvestigations] PRIMARY KEY ([InvestigationId]),
+    CONSTRAINT [FK_ClaimInvestigations_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId])
+);
+2026-06-06 10:17:51.488 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ClaimSettlements] (
+    [SettlementId] int NOT NULL IDENTITY,
+    [ClaimId] int NOT NULL,
+    [ApprovedAmount] decimal(18,2) NOT NULL,
+    [SettlementStatus] nvarchar(30) NOT NULL,
+    [SettlementDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_ClaimSettlements] PRIMARY KEY ([SettlementId]),
+    CONSTRAINT [FK_ClaimSettlements_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId])
+);
+2026-06-06 10:17:51.492 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Documents] (
+    [DocumentId] int NOT NULL IDENTITY,
+    [ClaimId] int NULL,
+    [CustomerId] int NULL,
+    [PolicyId] int NULL,
+    [EntityType] nvarchar(50) NOT NULL,
+    [FileName] nvarchar(255) NOT NULL,
+    [FilePath] nvarchar(max) NOT NULL,
+    [Status] bit NOT NULL,
+    [UploadDate] datetime2 NOT NULL,
+    [CreatedBy] int NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [ModifiedBy] int NULL,
+    [ModifiedAt] datetime2 NULL,
+    CONSTRAINT [PK_Documents] PRIMARY KEY ([DocumentId]),
+    CONSTRAINT [FK_Documents_Claims_ClaimId] FOREIGN KEY ([ClaimId]) REFERENCES [Claims] ([ClaimId]),
+    CONSTRAINT [FK_Documents_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]),
+    CONSTRAINT [FK_Documents_Policies_PolicyId] FOREIGN KEY ([PolicyId]) REFERENCES [Policies] ([PolicyId])
+);
+2026-06-06 10:17:51.509 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ClaimInvestigations_ClaimId] ON [ClaimInvestigations] ([ClaimId]);
+2026-06-06 10:17:51.513 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Claims_AgentId] ON [Claims] ([AgentId]);
+2026-06-06 10:17:51.519 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Claims_PolicyId] ON [Claims] ([PolicyId]);
+2026-06-06 10:17:51.522 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ClaimSettlements_ClaimId] ON [ClaimSettlements] ([ClaimId]);
+2026-06-06 10:17:51.526 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Commissions_AgentId] ON [Commissions] ([AgentId]);
+2026-06-06 10:17:54.402 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Commissions_PolicyId] ON [Commissions] ([PolicyId]);
+2026-06-06 10:17:54.444 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerAddresses_CustomerId] ON [CustomerAddresses] ([CustomerId]);
+2026-06-06 10:17:54.447 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerKycs_CustomerId] ON [CustomerKycs] ([CustomerId]);
+2026-06-06 10:17:54.452 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerKycs_VerifiedBy] ON [CustomerKycs] ([VerifiedBy]);
+2026-06-06 10:17:54.453 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CustomerNominees_CustomerId] ON [CustomerNominees] ([CustomerId]);
+2026-06-06 10:17:54.455 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Customers_AgentId] ON [Customers] ([AgentId]);
+2026-06-06 10:17:54.457 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_ClaimId] ON [Documents] ([ClaimId]);
+2026-06-06 10:17:54.460 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_CustomerId] ON [Documents] ([CustomerId]);
+2026-06-06 10:17:54.464 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Documents_PolicyId] ON [Documents] ([PolicyId]);
+2026-06-06 10:17:54.466 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_HealthProfiles_CustomerId] ON [HealthProfiles] ([CustomerId]);
+2026-06-06 10:17:54.468 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_UserId] ON [Notifications] ([UserId]);
+2026-06-06 10:17:54.470 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_PolicyId] ON [Payments] ([PolicyId]);
+2026-06-06 10:17:54.473 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_AgentId] ON [Policies] ([AgentId]);
+2026-06-06 10:17:54.475 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_CustomerId] ON [Policies] ([CustomerId]);
+2026-06-06 10:17:54.478 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_ProductId] ON [Policies] ([ProductId]);
+2026-06-06 10:17:54.481 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Policies_QuoteId] ON [Policies] ([QuoteId]);
+2026-06-06 10:17:54.483 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_PolicyMembers_PolicyId] ON [PolicyMembers] ([PolicyId]);
+2026-06-06 10:17:54.484 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_PremiumSchedules_PolicyId] ON [PremiumSchedules] ([PolicyId]);
+2026-06-06 10:17:54.489 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ProductBenefits_ProductId] ON [ProductBenefits] ([ProductId]);
+2026-06-06 10:17:54.491 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Quotes_CustomerId] ON [Quotes] ([CustomerId]);
+2026-06-06 10:17:54.495 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Quotes_ProductId] ON [Quotes] ([ProductId]);
+2026-06-06 10:17:54.498 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_UnderwritingCases_QuoteId] ON [UnderwritingCases] ([QuoteId]);
+2026-06-06 10:17:54.500 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_CustomerId] ON [Users] ([CustomerId]);
+2026-06-06 10:17:54.502 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Users_RoleId] ON [Users] ([RoleId]);
+2026-06-06 10:17:57.026 +05:30 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260606044705_InitialCreate', N'8.0.0');
+2026-06-06 16:05:00.270 +05:30 [INF] Insurance API Started Successfully
+2026-06-06 16:05:00.517 +05:30 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-06-06 16:05:00.521 +05:30 [INF] Application Starting
+2026-06-06 16:05:00.755 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-06 16:05:00.828 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-06 16:05:00.832 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-06 16:05:00.893 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-06 16:05:00.895 +05:30 [INF] Hosting environment: Development
+2026-06-06 16:05:00.898 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-06 16:05:02.269 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-06 16:05:02.503 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 237.0386ms
+2026-06-06 16:05:02.511 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-06 16:05:02.643 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 131.7797ms
+2026-06-06 16:05:02.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-06 16:05:02.706 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-06 16:05:02.706 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-06 16:05:02.707 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-06 16:05:02.708 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-06 16:05:02.740 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 31.9414ms
+2026-06-06 16:05:02.748 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-06 16:05:02.748 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-06 16:05:02.766 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 59.8358ms
+2026-06-06 16:05:02.769 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 64.6702ms
+2026-06-06 16:05:02.796 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-06 16:05:02.800 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 93.4821ms
+2026-06-06 16:05:02.834 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 127.5495ms
+2026-06-06 16:05:03.071 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-06 16:05:03.085 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.7942ms
+2026-06-06 16:05:03.106 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-06 16:05:03.111 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-06 16:05:03.114 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 8.0434ms

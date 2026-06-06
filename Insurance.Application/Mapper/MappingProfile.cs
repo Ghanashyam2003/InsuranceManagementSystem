@@ -2,16 +2,21 @@
 using Insurance.Application.DTOs.Customer;
 using Insurance.Domain.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Insurance.Application.DTOs.Policy;
+
 
 namespace Insurance.Application.Mappings
-{
-    public class MappingProfile : Profile
     {
-        public MappingProfile()
+        public class MappingProfile: Profile
         {
-            CreateMap<CustomerCreateDto, Customer>();
+            public MappingProfile()
+            {
+                CreateMap<Policy, PolicyResponseDto>();
 
-            CreateMap<Customer, CustomerResponseDto>();
+                CreateMap<CreatePolicyRequestDto, Policy>();
+
+                CreateMap<PolicyMember, PolicyMemberDto>()
+                    .ReverseMap();
+            }
         }
     }
-}
