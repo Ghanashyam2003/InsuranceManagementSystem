@@ -14,7 +14,10 @@ using System.Threading.RateLimiting;
 using Asp.Versioning;
 using Insurance.Application.Interfaces;
 using Insurance.Infrastructure.Repositories;
-
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repository;
+using Hangfire;
+using Hangfire.SqlServer;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -30,6 +33,8 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAutoMapper(cfg =>
 {
@@ -38,6 +43,8 @@ builder.Services.AddAutoMapper(cfg =>
 
 
 builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
+
+builder.Services.AddScoped<IPremiumScheduleRepo, PremiumScheduleRepo>();
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -101,8 +108,22 @@ builder.Services.AddScoped<IProductRepository,
 builder.Services.AddScoped<IProductBenefitRepository,
     ProductBenefitRepository>();
 
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddHangfireServer();
+
 
 var app = builder.Build();
+
+app.UseHangfireDashboard();
+RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
+    "PremiumReminderJob",
+    x => x.SendRemindersAsync(),
+    Cron.Minutely);
+
+
 
 Log.Information("Insurance API Started Successfully");
 

@@ -14,6 +14,6 @@ namespace Insurance.Application.DTOs.Product
 
         public string? Description { get; set; }
 
-        public bool Status { get; set; }
+        public string Status { get; set; }
     }
 }
