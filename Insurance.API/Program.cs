@@ -7,8 +7,13 @@ using Insurance.Infrastructure.Repository;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
 using Serilog;
 using System.Threading.RateLimiting;
+using Asp.Versioning;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
 
 
 
@@ -83,10 +88,19 @@ builder.Services.AddApiVersioning(options =>
         new UrlSegmentApiVersionReader();
 });
 
+
 builder.Services.AddMemoryCache();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddScoped<IProductRepository,
+    ProductRepository>();
+
+builder.Services.AddScoped<IProductBenefitRepository,
+    ProductBenefitRepository>();
+
 
 var app = builder.Build();
 
