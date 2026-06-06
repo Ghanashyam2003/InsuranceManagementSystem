@@ -26,7 +26,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(30)]
-        public string? Status { get; set; }
+        public string? Status { get; set; } = "Pending";
 
         public int CreatedBy { get; set; }
 
@@ -41,5 +41,12 @@ namespace Insurance.Domain.Models
 
         [ForeignKey("ProductId")]
         public InsuranceProduct? Product { get; set; }
+
+        public decimal SumInsured { get; set; }
+
+        [StringLength(20)]
+        public string? RiskCategory { get; set; }
+
+        public decimal RiskLoadingPercentage { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(20)]
-        public string? Status { get; set; } = null;
+        public string? Status { get; set; } = "Pending";
         public int? VerifiedBy { get; set; }
 
         public DateTime? VerifiedDate { get; set; }

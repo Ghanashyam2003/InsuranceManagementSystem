@@ -36,7 +36,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Status is Required")]
         [StringLength(30)]
-        public string? Status { get; set; }
+        public string? Status { get; set; } = "Pending";
 
         public bool IsDeleted { get; set; }
 

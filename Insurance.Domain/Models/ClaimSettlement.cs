@@ -16,7 +16,7 @@ namespace Insurance.Domain.Models
 
         [Required(ErrorMessage = "Settlement Status is Required")]
         [StringLength(30)]
-        public string? SettlementStatus { get; set; }
+        public string? SettlementStatus { get; set; } = "Pending";
 
         [Required(ErrorMessage = "Settlement Date is Required")]
         public DateTime SettlementDate { get; set; }

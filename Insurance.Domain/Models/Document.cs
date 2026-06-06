@@ -24,7 +24,7 @@ namespace Insurance.Domain.Models
         [Required(ErrorMessage = "File Path is Required")]
         public string? FilePath { get; set; }
 
-        public bool Status { get; set; }
+        public string? Status { get; set; } = "Pending";
 
         public DateTime UploadDate { get; set; }
 

@@ -18,7 +18,7 @@ namespace Insurance.Domain.Models
 
         public string? Description { get; set; }
 
-        public bool Status { get; set; }
+        public String? Status { get; set; }
 
         public int CreatedBy { get; set; }
 

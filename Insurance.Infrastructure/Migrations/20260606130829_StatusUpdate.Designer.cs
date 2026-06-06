@@ -4,6 +4,7 @@ using Insurance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insurance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260606130829_StatusUpdate")]
+    partial class StatusUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -957,20 +960,10 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<DateTime>("QuoteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("RiskCategory")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<decimal>("RiskLoadingPercentage")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<decimal>("SumInsured")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("QuoteId");
 

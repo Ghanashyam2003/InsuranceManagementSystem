@@ -1,12 +1,15 @@
+using Asp.Versioning;
 using Insurance.API.Middleware;
+using Insurance.Application.Interfaces;
 using Insurance.Application.Mappings;
 using Insurance.Infrastructure.Data;
+using Insurance.Infrastructure.Repository;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Insurance.Application.Interfaces;
 using Insurance.Infrastructure.Repositories;
 using Serilog;
-using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using Asp.Versioning;
 using Insurance.Application.Interfaces;
@@ -27,7 +30,14 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+// builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
+
+builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
 
 builder.Services.AddRateLimiter(options =>
 {
