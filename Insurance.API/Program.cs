@@ -7,6 +7,8 @@ using Serilog;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using Asp.Versioning;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
 
 
 
@@ -75,6 +77,10 @@ builder.Services.AddApiVersioning(options =>
 });
 
 builder.Services.AddMemoryCache();
+builder.Services.AddScoped<
+    IPaymentRepository,
+    PaymentRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

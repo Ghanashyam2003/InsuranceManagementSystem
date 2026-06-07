@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Insurance.Infrastructure\Insurance.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
