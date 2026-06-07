@@ -8,8 +8,18 @@ using Insurance.Infrastructure.Data;
 using Insurance.Infrastructure.Repository;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
 using Serilog;
 using System.Threading.RateLimiting;
+using Asp.Versioning;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repository;
+using Hangfire;
+using Hangfire.SqlServer;
+
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -31,6 +41,18 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 #endregion
+
+
+// builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
+
+builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
+
+builder.Services.AddScoped<IPremiumScheduleRepo, PremiumScheduleRepo>();
 
 #region Database
 
@@ -107,6 +129,25 @@ builder.Services.AddHangfireServer();
 
 #endregion
 
+builder.Services.AddMemoryCache();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddScoped<IProductRepository,
+    ProductRepository>();
+
+builder.Services.AddScoped<IProductBenefitRepository,
+    ProductBenefitRepository>();
+
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddHangfireServer();
+
+
 var app = builder.Build();
 
 //#region Hangfire Dashboard & Jobs
@@ -119,6 +160,13 @@ var app = builder.Build();
 //    Cron.Minutely);
 
 //#endregion
+app.UseHangfireDashboard();
+RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
+    "PremiumReminderJob",
+    x => x.SendRemindersAsync(),
+    Cron.Minutely);
+
+
 
 Log.Information("Insurance API Started Successfully");
 
