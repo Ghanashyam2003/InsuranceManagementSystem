@@ -2,23 +2,21 @@ using Asp.Versioning;
 using Hangfire;
 using Hangfire.SqlServer;
 using Insurance.API.Middleware;
+using Insurance.Application.Interface;
+using Insurance.Application.Interfaces;
+using Insurance.Application.Interfaces;
+using Insurance.Application.Interfaces;
 using Insurance.Application.Interfaces;
 using Insurance.Application.Mappings;
 using Insurance.Infrastructure.Data;
+using Insurance.Infrastructure.Repositories;
+using Insurance.Infrastructure.Repositories;
+using Insurance.Infrastructure.Repository;
 using Insurance.Infrastructure.Repository;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Insurance.Application.Interfaces;
-using Insurance.Infrastructure.Repositories;
 using Serilog;
 using System.Threading.RateLimiting;
-using Asp.Versioning;
-using Insurance.Application.Interfaces;
-using Insurance.Infrastructure.Repositories;
-using Insurance.Application.Interfaces;
-using Insurance.Infrastructure.Repository;
-using Hangfire;
-using Hangfire.SqlServer;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -49,6 +47,9 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<MappingProfile>();
 });
 
+builder.Services.AddScoped<
+    ISupportTicketRepo,
+    SupportTicketRepo>();
 
 builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
 

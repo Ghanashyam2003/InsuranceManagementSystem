@@ -41,7 +41,7 @@ namespace Insurance.Infrastructure.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
@@ -223,7 +223,10 @@ namespace Insurance.Infrastructure.Migrations
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SumInsured = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RiskCategory = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    RiskLoadingPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -397,6 +400,33 @@ namespace Insurance.Infrastructure.Migrations
                     table.PrimaryKey("PK_Notifications", x => x.NotificationId);
                     table.ForeignKey(
                         name: "FK_Notifications_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportTickets",
+                columns: table => new
+                {
+                    TicketId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ResolvedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportTickets", x => x.TicketId);
+                    table.ForeignKey(
+                        name: "FK_SupportTickets_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId");
@@ -600,7 +630,7 @@ namespace Insurance.Infrastructure.Migrations
                     EntityType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UploadDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -758,6 +788,11 @@ namespace Insurance.Infrastructure.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SupportTickets_UserId",
+                table: "SupportTickets",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UnderwritingCases_QuoteId",
                 table: "UnderwritingCases",
                 column: "QuoteId");
@@ -814,6 +849,9 @@ namespace Insurance.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductBenefits");
+
+            migrationBuilder.DropTable(
+                name: "SupportTickets");
 
             migrationBuilder.DropTable(
                 name: "UnderwritingCases");
