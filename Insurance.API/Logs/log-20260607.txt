@@ -310,3 +310,594 @@ WHERE [PolicyId] = @p2;
 2026-06-07 01:49:08.003 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 506.9212ms
 2026-06-07 01:49:08.006 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
 2026-06-07 01:49:08.009 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/{QuoteId} - 400 null application/problem+json; charset=utf-8 615.0494ms
+2026-06-07 01:51:44.413 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 01:51:44.591 +05:30 [INF] Application Starting
+2026-06-07 01:51:44.738 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 01:51:44.804 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 01:51:44.806 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 01:51:44.866 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 01:51:44.867 +05:30 [INF] Hosting environment: Development
+2026-06-07 01:51:44.869 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 01:51:45.701 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 01:51:45.848 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 148.5257ms
+2026-06-07 01:51:45.861 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 01:51:45.956 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 94.4136ms
+2026-06-07 01:51:46.029 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 01:51:46.030 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 01:51:46.030 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 01:51:46.030 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 01:51:46.050 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 20.1173ms
+2026-06-07 01:51:46.059 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 01:51:46.059 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 01:51:46.061 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 01:51:46.063 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 33.4086ms
+2026-06-07 01:51:46.063 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 33.8892ms
+2026-06-07 01:51:46.065 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 35.7074ms
+2026-06-07 01:51:46.079 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 01:51:46.140 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.6738ms
+2026-06-07 01:51:46.391 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 01:51:46.406 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.5549ms
+2026-06-07 01:52:02.144 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/7 - application/json 51
+2026-06-07 01:52:02.179 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 01:52:02.245 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 01:52:02.645 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 01:52:03.628 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 01:52:03.631 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 01:52:03.633 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 01:52:04.621 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 01:52:05.023 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 01:52:05.073 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 01:52:05.097 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 2843.2787ms
+2026-06-07 01:52:05.100 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 01:52:05.109 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/7 - 200 null application/json; charset=utf-8 2965.0001ms
+2026-06-07 01:52:40.958 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/9 - application/json 51
+2026-06-07 01:52:40.998 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 01:52:41.002 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 01:52:41.061 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 01:52:41.084 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 01:52:41.091 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 01:52:41.094 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 87.4195ms
+2026-06-07 01:52:41.098 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 01:52:41.100 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/9 - 200 null application/json; charset=utf-8 142.1124ms
+2026-06-07 14:49:27.779 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 14:49:28.057 +05:30 [INF] Application Starting
+2026-06-07 14:49:28.372 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 14:49:30.713 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 14:49:31.029 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 14:49:31.121 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 14:49:31.123 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 14:49:31.233 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 14:49:31.236 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 14:49:31.238 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 14:49:31.264 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 14:49:31.266 +05:30 [INF] Hosting environment: Development
+2026-06-07 14:49:31.268 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 14:49:31.728 +05:30 [INF] Server sanika-laptop:6124:ab36960a successfully announced in 461.5945 ms
+2026-06-07 14:49:31.734 +05:30 [INF] Server sanika-laptop:6124:ab36960a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 14:49:31.748 +05:30 [INF] Server sanika-laptop:6124:ab36960a all the dispatchers started
+2026-06-07 14:49:32.831 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 14:49:33.086 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 255.6869ms
+2026-06-07 14:49:33.104 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 14:49:33.222 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 118.5134ms
+2026-06-07 14:49:33.354 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 14:49:33.356 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 14:49:33.356 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 14:49:33.356 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 14:49:33.389 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 14:49:33.395 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 14:49:33.395 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 14:49:33.405 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 48.5993ms
+2026-06-07 14:49:33.406 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 51.4444ms
+2026-06-07 14:49:33.407 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 17.5433ms
+2026-06-07 14:49:33.437 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 14:49:33.441 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 84.7914ms
+2026-06-07 14:49:33.474 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 117.3444ms
+2026-06-07 14:49:33.765 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 14:49:33.791 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 26.9002ms
+2026-06-07 15:15:05.269 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 15:15:05.491 +05:30 [INF] Application Starting
+2026-06-07 15:15:05.543 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 15:15:06.961 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 15:15:07.268 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 15:15:07.352 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 15:15:07.353 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 15:15:07.468 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 15:15:07.470 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 15:15:07.472 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 15:15:07.501 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 15:15:07.503 +05:30 [INF] Hosting environment: Development
+2026-06-07 15:15:07.505 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 15:15:07.689 +05:30 [INF] Server sanika-laptop:32420:43e7eaef successfully announced in 186.0508 ms
+2026-06-07 15:15:07.695 +05:30 [INF] Server sanika-laptop:32420:43e7eaef is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 15:15:07.709 +05:30 [INF] Server sanika-laptop:32420:43e7eaef all the dispatchers started
+2026-06-07 15:15:08.288 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 15:15:08.491 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 203.073ms
+2026-06-07 15:15:08.517 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 15:15:08.667 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 150.3092ms
+2026-06-07 15:15:08.825 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 15:15:08.826 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 15:15:08.827 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 15:15:08.827 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 15:15:08.827 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 15:15:08.873 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 45.7185ms
+2026-06-07 15:15:08.874 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 15:15:08.874 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 15:15:08.905 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 77.7683ms
+2026-06-07 15:15:08.905 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 80.533ms
+2026-06-07 15:15:08.921 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 94.5656ms
+2026-06-07 15:15:08.926 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 15:15:08.935 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 108.5817ms
+2026-06-07 15:15:09.301 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 15:15:09.328 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 26.7096ms
+2026-06-07 15:18:01.518 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - application/json 51
+2026-06-07 15:18:01.545 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:18:01.610 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 15:18:02.165 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 15:18:03.344 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 15:18:03.349 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 15:18:03.352 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 15:18:03.975 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 15:18:04.451 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 15:18:04.504 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 15:18:04.535 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 2914.6036ms
+2026-06-07 15:18:04.537 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:18:04.549 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - 200 null application/json; charset=utf-8 3031.7674ms
+2026-06-07 15:19:04.728 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 15:19:04.740 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:19:04.746 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 15:19:04.814 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 15:19:04.834 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 15:19:04.840 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 15:19:04.845 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 93.2888ms
+2026-06-07 15:19:04.848 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:19:04.850 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 200 null application/json; charset=utf-8 121.7569ms
+2026-06-07 15:19:49.057 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - application/json 51
+2026-06-07 15:19:49.066 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:19:49.068 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 15:19:49.187 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 15:19:49.202 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 15:19:49.207 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 15:19:49.209 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 138.091ms
+2026-06-07 15:19:49.213 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:19:49.216 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - 200 null application/json; charset=utf-8 158.4264ms
+2026-06-07 15:20:04.782 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 15:20:04.844 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:20:04.847 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 15:20:04.861 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 15:20:04.881 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 15:20:04.885 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 15:20:04.889 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 38.4718ms
+2026-06-07 15:20:04.891 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 15:20:04.892 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 200 null application/json; charset=utf-8 110.7064ms
+2026-06-07 15:20:07.749 +05:30 [INF] 1 servers were removed due to timeout
+2026-06-07 16:01:51.017 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 16:01:51.314 +05:30 [INF] Application Starting
+2026-06-07 16:01:51.648 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 16:01:53.300 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 16:01:53.586 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 16:01:53.674 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 16:01:53.676 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 16:01:53.770 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 16:01:53.772 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 16:01:53.774 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 16:01:53.797 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 16:01:53.799 +05:30 [INF] Hosting environment: Development
+2026-06-07 16:01:53.801 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 16:01:54.242 +05:30 [INF] Server sanika-laptop:25300:2dc23ebf successfully announced in 443.4366 ms
+2026-06-07 16:01:54.248 +05:30 [INF] Server sanika-laptop:25300:2dc23ebf is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 16:01:54.266 +05:30 [INF] Server sanika-laptop:25300:2dc23ebf all the dispatchers started
+2026-06-07 16:01:54.995 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 16:01:55.183 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 188.9562ms
+2026-06-07 16:01:55.196 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 16:01:55.315 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 119.2007ms
+2026-06-07 16:01:55.433 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 16:01:55.434 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 16:01:55.434 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 16:01:55.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 16:01:55.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 16:01:55.478 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 16:01:55.479 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 16:01:55.479 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 43.5403ms
+2026-06-07 16:01:55.481 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 47.6928ms
+2026-06-07 16:01:55.485 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 50.9704ms
+2026-06-07 16:01:55.529 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 16:01:55.532 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 96.5259ms
+2026-06-07 16:01:55.535 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 100.5477ms
+2026-06-07 16:01:55.884 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 16:01:55.905 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 21.2807ms
+2026-06-07 16:02:12.722 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 16:02:12.774 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:02:12.834 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:02:13.344 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 16:02:14.489 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 16:02:14.492 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 16:02:14.496 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 16:02:15.180 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 16:02:15.340 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 2497.4704ms
+2026-06-07 16:02:15.346 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:02:15.368 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 2645.7988ms
+2026-06-07 16:02:38.606 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - application/json 51
+2026-06-07 16:02:38.619 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:02:38.625 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:02:38.678 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 16:02:38.727 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[QuoteId] = @__QuoteId_0
+2026-06-07 16:02:38.814 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 183.1348ms
+2026-06-07 16:02:38.818 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:02:38.821 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - 500 null application/json 214.5824ms
+2026-06-07 16:03:17.082 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/1 - null null
+2026-06-07 16:03:17.094 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:03:17.108 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:03:17.233 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:03:17.240 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 127.4615ms
+2026-06-07 16:03:17.242 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:03:17.245 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/1 - 500 null application/json 162.6056ms
+2026-06-07 16:03:19.019 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/1 - null null
+2026-06-07 16:03:19.048 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:03:19.056 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:03:19.070 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:03:19.114 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 52.7646ms
+2026-06-07 16:03:19.117 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:03:19.121 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/1 - 500 null application/json 101.9309ms
+2026-06-07 16:04:15.084 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/2 - null null
+2026-06-07 16:04:15.096 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:04:15.103 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:04:15.121 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:04:15.144 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 16:04:15.170 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 60.7022ms
+2026-06-07 16:04:15.172 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:04:15.174 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/2 - 200 null application/json; charset=utf-8 89.5401ms
+2026-06-07 16:04:48.839 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/5 - null null
+2026-06-07 16:04:48.849 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:04:48.854 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:04:48.870 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:04:48.879 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 16:04:48.884 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 24.5094ms
+2026-06-07 16:04:48.888 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:04:48.891 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/5 - 200 null application/json; charset=utf-8 51.7589ms
+2026-06-07 16:06:54.317 +05:30 [INF] 1 servers were removed due to timeout
+2026-06-07 16:07:55.946 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/4 - null null
+2026-06-07 16:07:55.949 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:07:55.951 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:07:55.961 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:07:55.965 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 16:07:55.967 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 14.1574ms
+2026-06-07 16:07:55.969 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:07:55.970 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/4 - 200 null application/json; charset=utf-8 24.5725ms
+2026-06-07 16:09:12.741 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/8 - null null
+2026-06-07 16:09:12.749 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:09:12.752 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:09:12.764 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 16:09:12.771 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 16:09:12.775 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 18.4379ms
+2026-06-07 16:09:12.778 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 16:09:12.781 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/8 - 200 null application/json; charset=utf-8 39.4694ms
+2026-06-07 16:34:11.247 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - application/json 51
+2026-06-07 16:34:11.327 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:34:11.345 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:34:11.486 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 16:34:11.519 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[QuoteId] = @__QuoteId_0
+2026-06-07 16:34:11.541 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 186.9754ms
+2026-06-07 16:34:11.547 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:34:11.564 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - 500 null application/json 323.464ms
+2026-06-07 16:35:28.721 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 16:35:28.854 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 134.3206ms
+2026-06-07 16:35:29.063 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 16:35:29.063 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 16:35:29.065 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 16:35:29.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 23.0122ms
+2026-06-07 16:35:29.090 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 16:35:29.099 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 36.5381ms
+2026-06-07 16:35:29.115 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.173ms
+2026-06-07 16:35:29.574 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 16:35:29.597 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-07 16:35:29.607 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-07 16:35:29.611 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 14.1476ms
+2026-06-07 16:35:29.658 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 84.0536ms
+2026-06-07 16:35:43.538 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - application/json 51
+2026-06-07 16:35:43.546 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:35:43.548 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 16:35:43.595 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 16:35:43.608 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[QuoteId] = @__QuoteId_0
+2026-06-07 16:35:43.725 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+ORDER BY [p].[PolicyId] DESC
+2026-06-07 16:35:44.150 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime2), @p10='?' (Size = 50), @p11='?' (DbType = DateTime2), @p12='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (Size = 30), @p16='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Policies] ([AgentId], [ApprovedAt], [ApprovedBy], [CreatedAt], [CreatedBy], [CustomerId], [IsDeleted], [ModifiedAt], [ModifiedBy], [PolicyEndDate], [PolicyNumber], [PolicyStartDate], [PremiumAmount], [ProductId], [QuoteId], [Status], [SumInsured])
+OUTPUT INSERTED.[PolicyId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+2026-06-07 16:35:44.201 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 16:35:44.208 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 657.7562ms
+2026-06-07 16:35:44.211 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 16:35:44.213 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/7 - 200 null application/json; charset=utf-8 674.3993ms
+2026-06-07 17:36:43.500 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 17:36:43.685 +05:30 [INF] Application Starting
+2026-06-07 17:36:43.756 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 17:36:44.769 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 17:36:45.040 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 17:36:45.114 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 17:36:45.115 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 17:36:45.195 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 17:36:45.197 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 17:36:45.199 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 17:36:45.217 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 17:36:45.219 +05:30 [INF] Hosting environment: Development
+2026-06-07 17:36:45.221 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 17:36:45.544 +05:30 [INF] Server sanika-laptop:30632:6d81c94e successfully announced in 323.3754 ms
+2026-06-07 17:36:45.551 +05:30 [INF] Server sanika-laptop:30632:6d81c94e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 17:36:45.574 +05:30 [INF] Server sanika-laptop:30632:6d81c94e all the dispatchers started
+2026-06-07 17:36:46.007 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 17:36:46.177 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 170.4292ms
+2026-06-07 17:36:46.197 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 17:36:46.307 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 109.9939ms
+2026-06-07 17:36:46.766 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 17:36:46.766 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 17:36:46.766 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 17:36:46.766 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 17:36:46.766 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 17:36:46.791 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 24.5821ms
+2026-06-07 17:36:46.806 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 17:36:46.806 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 17:36:46.809 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 43.0083ms
+2026-06-07 17:36:46.811 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 45.2492ms
+2026-06-07 17:36:46.839 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 72.9744ms
+2026-06-07 17:36:46.847 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 17:36:46.850 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 83.5481ms
+2026-06-07 17:36:47.099 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 17:36:47.115 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.3748ms
+2026-06-07 17:41:45.625 +05:30 [INF] 1 servers were removed due to timeout
+2026-06-07 17:44:03.406 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:44:03.427 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:44:03.481 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:44:03.816 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 17:44:04.754 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 17:44:04.757 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 17:44:04.759 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 17:44:05.302 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:44:05.420 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 1930.0395ms
+2026-06-07 17:44:05.426 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:44:05.442 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 2035.6327ms
+2026-06-07 17:44:46.935 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - null 0
+2026-06-07 17:44:46.961 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:44:46.973 +05:30 [INF] Route matched with {action = "ApproveHighRiskQuote", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveHighRiskQuote(Int32, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:44:47.013 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-07 17:44:47.164 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Quotes] SET [ModifiedAt] = @p0, [ModifiedBy] = @p1, [Status] = @p2
+OUTPUT 1
+WHERE [QuoteId] = @p3;
+2026-06-07 17:44:47.191 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-07 17:44:47.200 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API) in 224.5177ms
+2026-06-07 17:44:47.203 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:44:47.205 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - 200 null application/json; charset=utf-8 269.7511ms
+2026-06-07 17:45:36.695 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/3 - null null
+2026-06-07 17:45:36.699 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 17:45:36.707 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:45:36.803 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 17:45:36.874 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 17:45:36.894 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 183.7046ms
+2026-06-07 17:45:36.897 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 17:45:36.900 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/3 - 200 null application/json; charset=utf-8 204.5753ms
+2026-06-07 17:47:00.335 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:47:00.342 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:47:00.345 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:47:00.363 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:47:00.369 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 20.1041ms
+2026-06-07 17:47:00.371 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:47:00.373 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 38.2096ms
+2026-06-07 17:48:17.451 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:48:17.463 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:48:17.466 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:48:17.476 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:48:17.480 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 9.967ms
+2026-06-07 17:48:17.482 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:48:17.483 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 31.8996ms
+2026-06-07 17:48:31.880 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:48:31.884 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:48:31.919 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:48:31.930 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:48:31.935 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 9.243ms
+2026-06-07 17:48:31.938 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:48:31.943 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 63.3211ms
+2026-06-07 17:48:44.720 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - null 0
+2026-06-07 17:48:44.725 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:48:44.730 +05:30 [INF] Route matched with {action = "ApproveHighRiskQuote", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveHighRiskQuote(Int32, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:48:44.748 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-07 17:48:44.800 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Quotes] SET [ModifiedAt] = @p0, [Status] = @p1
+OUTPUT 1
+WHERE [QuoteId] = @p2;
+2026-06-07 17:48:44.804 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-07 17:48:44.806 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API) in 72.2989ms
+2026-06-07 17:48:44.808 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:48:44.810 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - 200 null application/json; charset=utf-8 89.5397ms
+2026-06-07 17:48:44.953 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - null 0
+2026-06-07 17:48:44.957 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:48:44.960 +05:30 [INF] Route matched with {action = "ApproveHighRiskQuote", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ApproveHighRiskQuote(Int32, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:48:44.967 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__quoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__quoteId_0
+2026-06-07 17:48:45.015 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Quotes] SET [ModifiedAt] = @p0
+OUTPUT 1
+WHERE [QuoteId] = @p1;
+2026-06-07 17:48:45.018 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-07 17:48:45.020 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API) in 56.8032ms
+2026-06-07 17:48:45.022 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.ApproveHighRiskQuote (Insurance.API)'
+2026-06-07 17:48:45.023 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7284/api/v1/policies/ApproveHighRiskQuote/9 - 200 null application/json; charset=utf-8 70.4563ms
+2026-06-07 17:49:00.141 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:49:00.146 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:49:00.148 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:49:00.170 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:49:00.179 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 17.7065ms
+2026-06-07 17:49:00.182 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:49:00.185 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 45.0302ms
+2026-06-07 17:50:41.519 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:50:41.525 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:50:41.528 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:50:41.574 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:50:41.578 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 46.8475ms
+2026-06-07 17:50:41.581 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:50:41.583 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 63.5893ms
+2026-06-07 17:55:36.013 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 17:55:36.115 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 102.2922ms
+2026-06-07 17:55:36.296 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 17:55:36.296 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 17:55:36.297 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 17:55:36.320 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 23.1054ms
+2026-06-07 17:55:36.327 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 17:55:36.330 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 33.6509ms
+2026-06-07 17:55:36.333 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.603ms
+2026-06-07 17:55:36.655 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 17:55:36.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-07 17:55:36.677 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-07 17:55:36.679 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 7.2337ms
+2026-06-07 17:55:36.714 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 59.1667ms
+2026-06-07 17:55:50.262 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - application/json 51
+2026-06-07 17:55:50.275 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:55:50.281 +05:30 [INF] Route matched with {action = "CreatePolicy", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePolicy(Insurance.Application.DTOs.Policy.CreatePolicyRequestDto, Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 17:55:50.325 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__QuoteId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [q].[QuoteId], [q].[CreatedAt], [q].[CreatedBy], [q].[CustomerId], [q].[ExpiryDate], [q].[ModifiedAt], [q].[ModifiedBy], [q].[PremiumAmount], [q].[ProductId], [q].[QuoteDate], [q].[RiskCategory], [q].[RiskLoadingPercentage], [q].[Status], [q].[SumInsured]
+FROM [Quotes] AS [q]
+WHERE [q].[QuoteId] = @__QuoteId_0
+2026-06-07 17:55:50.331 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 44.6246ms
+2026-06-07 17:55:50.334 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
+2026-06-07 17:55:50.336 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 73.8262ms

@@ -1,13 +1,15 @@
 using Asp.Versioning;
+using Hangfire;
+using Hangfire.SqlServer;
 using Insurance.API.Middleware;
-using Insurance.Application.Interface;
+using Insurance.Application.Interfaces;
 using Insurance.Application.Mappings;
 using Insurance.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using Insurance.Infrastructure.Repository;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Threading.RateLimiting;
-using Insurance.Infrastructure.Repository;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -21,24 +23,39 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 
-builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+#region AutoMapper
 
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<MappingProfile>();
 });
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-builder.Services.AddMemoryCache();
+#endregion
+
+#region Database
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+#endregion
+
+#region Controllers
+
+builder.Services.AddControllers();
+
+#endregion
+
+#region Swagger
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+#endregion
+
+#region API Versioning
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -47,6 +64,16 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
     options.ApiVersionReader = new UrlSegmentApiVersionReader();
 });
+
+#endregion
+
+#region Memory Cache
+
+builder.Services.AddMemoryCache();
+
+#endregion
+
+#region Rate Limiting
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -60,15 +87,42 @@ builder.Services.AddRateLimiter(options =>
         });
 });
 
-/* SERVICES */
+#endregion
+
+#region Repositories
+
+
 
 builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
 
+#endregion
 
+#region Hangfire
+
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddHangfireServer();
+
+#endregion
 
 var app = builder.Build();
 
+//#region Hangfire Dashboard & Jobs
+
+//app.UseHangfireDashboard();
+
+//RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
+//    "PremiumReminderJob",
+//    x => x.SendRemindersAsync(),
+//    Cron.Minutely);
+
+//#endregion
+
 Log.Information("Insurance API Started Successfully");
+
+#region Middleware Pipeline
 
 if (app.Environment.IsDevelopment())
 {
@@ -85,6 +139,8 @@ app.UseAuthorization();
 app.UseRateLimiter();
 
 app.MapControllers();
+
+#endregion
 
 try
 {

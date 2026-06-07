@@ -15,8 +15,7 @@ namespace Insurance.Application.Mappings
 
                 CreateMap<CreatePolicyRequestDto, Policy>();
 
-                CreateMap<PolicyMember, PolicyMemberDto>()
-                    .ReverseMap();
+                CreateMap<PolicyMember, PolicyMemberDto>().ReverseMap();
             }
         }
     }

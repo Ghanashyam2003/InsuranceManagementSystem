@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Insurance.Application.DTOs.Policy;
 
-namespace Insurance.Application.Interface
+namespace Insurance.Application.Interfaces
 {
     public interface IPolicyRepo
     {
@@ -18,7 +18,9 @@ namespace Insurance.Application.Interface
 
             Task<ApiResponse<IEnumerable<PolicyResponseDto>>> GetPendingPoliciesAsync(int pageNumber, int pageSize);
 
-            Task<ApiResponse<string>> ApprovePolicyAsync(int policyId, int adminId);
+            Task<ApiResponse<string>> ApproveHighRiskQuoteAsync(int quoteId,int adminId);
+
+           Task<ApiResponse<string>> ApprovePolicyAsync(int policyId, int adminId);
 
             Task<ApiResponse<string>> RejectPolicyAsync(int policyId, int adminId);
 
