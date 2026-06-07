@@ -1,10 +1,11 @@
 using Asp.Versioning;
+using Hangfire;
+using Hangfire.SqlServer;
 using Insurance.API.Middleware;
 using Insurance.Application.Interfaces;
 using Insurance.Application.Mappings;
 using Insurance.Infrastructure.Data;
 using Insurance.Infrastructure.Repository;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Insurance.Application.Interfaces;
@@ -28,11 +29,18 @@ Log.Logger = new LoggerConfiguration()
         rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseSerilog();
+
+#region AutoMapper
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
+#endregion
 
 
 // builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -46,17 +54,48 @@ builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
 
 builder.Services.AddScoped<IPremiumScheduleRepo, PremiumScheduleRepo>();
 
-builder.Services.AddRateLimiter(options =>
+#region Database
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.AddFixedWindowLimiter(
-        "fixed",
-        limiterOptions =>
-        {
-            limiterOptions.PermitLimit = 5;
-            limiterOptions.Window = TimeSpan.FromMinutes(1);
-            limiterOptions.QueueLimit = 0;
-        });
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+#endregion
+
+#region Controllers
+
+builder.Services.AddControllers();
+
+#endregion
+
+#region Swagger
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+#endregion
+
+#region API Versioning
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+});
+
+#endregion
+
+#region Memory Cache
+
+builder.Services.AddMemoryCache();
+
+#endregion
+
+#region Rate Limiting
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -70,31 +109,25 @@ builder.Services.AddRateLimiter(options =>
         });
 });
 
-builder.Host.UseSerilog();
+#endregion
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+#region Repositories
 
 
 
+builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
 
-builder.Services.AddControllers();
+#endregion
 
-builder.Services.AddApiVersioning(options =>
-{
-    options.DefaultApiVersion = new ApiVersion(1, 0);
+#region Hangfire
 
-    options.AssumeDefaultVersionWhenUnspecified = true;
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    options.ReportApiVersions = true;
+builder.Services.AddHangfireServer();
 
-    options.ApiVersionReader =
-        new UrlSegmentApiVersionReader();
-});
-
+#endregion
 
 builder.Services.AddMemoryCache();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -117,6 +150,16 @@ builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
+//#region Hangfire Dashboard & Jobs
+
+//app.UseHangfireDashboard();
+
+//RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
+//    "PremiumReminderJob",
+//    x => x.SendRemindersAsync(),
+//    Cron.Minutely);
+
+//#endregion
 app.UseHangfireDashboard();
 RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
     "PremiumReminderJob",
@@ -127,7 +170,8 @@ RecurringJob.AddOrUpdate<IPremiumScheduleRepo>(
 
 Log.Information("Insurance API Started Successfully");
 
-// Configure the HTTP request pipeline.
+#region Middleware Pipeline
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -142,14 +186,13 @@ app.UseAuthorization();
 
 app.UseRateLimiter();
 
-
-
 app.MapControllers();
+
+#endregion
 
 try
 {
     Log.Information("Application Starting");
-
     app.Run();
 }
 catch (Exception ex)
