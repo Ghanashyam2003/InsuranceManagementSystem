@@ -9,13 +9,21 @@ namespace Insurance.Application.Mappings
     {
         public class MappingProfile: Profile
         {
-            public MappingProfile()
-            {
-                CreateMap<Policy, PolicyResponseDto>();
+        public MappingProfile()
+        {
+            CreateMap<Policy, PolicyResponseDto>()
+                .ForMember(
+                    dest => dest.PolicyStartDate,
+                    opt => opt.MapFrom(src => DateOnly.FromDateTime(src.PolicyStartDate))
+                )
+                .ForMember(
+                    dest => dest.PolicyEndDate,
+                    opt => opt.MapFrom(src => DateOnly.FromDateTime(src.PolicyEndDate))
+                );
 
-                CreateMap<CreatePolicyRequestDto, Policy>();
+            CreateMap<CreatePolicyRequestDto, Policy>();
 
-                CreateMap<PolicyMember, PolicyMemberDto>().ReverseMap();
-            }
+            CreateMap<PolicyMember, PolicyMemberDto>().ReverseMap();
         }
+    }
     }

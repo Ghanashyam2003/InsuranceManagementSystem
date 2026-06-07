@@ -901,3 +901,261 @@ WHERE [q].[QuoteId] = @__QuoteId_0
 2026-06-07 17:55:50.331 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API) in 44.6246ms
 2026-06-07 17:55:50.334 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.CreatePolicy (Insurance.API)'
 2026-06-07 17:55:50.336 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7284/api/v1/policies/CreatePolicy/9 - 500 null application/json 73.8262ms
+2026-06-07 18:56:46.609 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 18:56:46.952 +05:30 [INF] Application Starting
+2026-06-07 18:56:47.288 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 18:56:48.975 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 18:56:49.254 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 18:56:49.342 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 18:56:49.345 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 18:56:49.436 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 18:56:49.439 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 18:56:49.442 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 18:56:49.468 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 18:56:49.472 +05:30 [INF] Hosting environment: Development
+2026-06-07 18:56:49.476 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 18:56:49.954 +05:30 [INF] Server sanika-laptop:35176:1ae9b2f6 successfully announced in 484.2491 ms
+2026-06-07 18:56:49.961 +05:30 [INF] Server sanika-laptop:35176:1ae9b2f6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 18:56:49.985 +05:30 [INF] Server sanika-laptop:35176:1ae9b2f6 all the dispatchers started
+2026-06-07 18:56:50.530 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 18:56:50.796 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 266.2737ms
+2026-06-07 18:56:50.809 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 18:56:50.936 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 126.7218ms
+2026-06-07 18:56:51.020 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 18:56:51.020 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 18:56:51.022 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 18:56:51.022 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 18:56:51.055 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 32.8159ms
+2026-06-07 18:56:51.065 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 18:56:51.065 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 18:56:51.075 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 54.8445ms
+2026-06-07 18:56:51.077 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 55.2537ms
+2026-06-07 18:56:51.108 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 18:56:51.111 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 90.8924ms
+2026-06-07 18:56:51.116 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 18:56:51.229 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 112.7625ms
+2026-06-07 18:56:51.407 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 18:56:51.427 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 20.0047ms
+2026-06-07 18:57:07.815 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/13 - null null
+2026-06-07 18:57:07.869 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 18:57:07.927 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 18:57:08.474 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 18:57:09.658 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 18:57:09.661 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 18:57:09.665 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 18:57:10.344 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 18:57:10.524 +05:30 [INF] Executing OkObjectResult, writing value of type 'Insurance.Application.Common.Responses.ApiResponse`1[[Insurance.Application.DTOs.Policy.PolicyResponseDto, Insurance.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-07 18:57:10.560 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 2620.3791ms
+2026-06-07 18:57:10.564 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 18:57:10.574 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/13 - 200 null application/json; charset=utf-8 2759.4834ms
+2026-06-07 19:09:46.734 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:09:46.803 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:09:46.803 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:09:47.275 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:09:47.276 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:09:47.276 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:01.633 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 19:10:01.882 +05:30 [INF] Application Starting
+2026-06-07 19:10:01.938 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 19:10:03.094 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 19:10:03.300 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 19:10:03.384 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 19:10:03.386 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 19:10:03.478 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 19:10:03.480 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 19:10:03.481 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 19:10:03.501 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 19:10:03.503 +05:30 [INF] Hosting environment: Development
+2026-06-07 19:10:03.505 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 19:10:03.708 +05:30 [INF] Server sanika-laptop:8720:e089babb successfully announced in 205.6084 ms
+2026-06-07 19:10:03.715 +05:30 [INF] Server sanika-laptop:8720:e089babb is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 19:10:03.729 +05:30 [INF] Server sanika-laptop:8720:e089babb all the dispatchers started
+2026-06-07 19:10:35.194 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:35.252 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:35.253 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:35.739 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:35.739 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:35.739 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:10:40.351 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 19:10:40.590 +05:30 [INF] Application Starting
+2026-06-07 19:10:40.624 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 19:10:41.773 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 19:10:41.962 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 19:10:42.040 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 19:10:42.042 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 19:10:42.122 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 19:10:42.124 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 19:10:42.125 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 19:10:42.145 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 19:10:42.148 +05:30 [INF] Hosting environment: Development
+2026-06-07 19:10:42.150 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 19:10:42.319 +05:30 [INF] Server sanika-laptop:32848:16fa3dc4 successfully announced in 170.3889 ms
+2026-06-07 19:10:42.325 +05:30 [INF] Server sanika-laptop:32848:16fa3dc4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 19:10:42.344 +05:30 [INF] Server sanika-laptop:32848:16fa3dc4 all the dispatchers started
+2026-06-07 19:11:05.868 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:11:05.926 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:11:05.927 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:11:06.579 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-07 19:11:06.631 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-07 19:11:06.635 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-06-07 19:11:06.638 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-06-07 19:11:06.680 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-06-07 19:11:06.706 +05:30 [INF] Applying migration '20260607134036_addupdate'.
+2026-06-07 19:11:06.915 +05:30 [INF] Executed DbCommand (75ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Quotes] ADD [PolicyTenureYears] int NOT NULL DEFAULT 0;
+2026-06-07 19:11:06.923 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260607134036_addupdate', N'8.0.0');
+2026-06-07 19:11:08.812 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 19:11:09.024 +05:30 [INF] Application Starting
+2026-06-07 19:11:09.054 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 19:11:09.999 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 19:11:10.180 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 19:11:10.245 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 19:11:10.247 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 19:11:10.318 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 19:11:10.320 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 19:11:10.322 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 19:11:10.341 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 19:11:10.343 +05:30 [INF] Hosting environment: Development
+2026-06-07 19:11:10.345 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 19:11:10.506 +05:30 [INF] Server sanika-laptop:19412:05ed8e47 successfully announced in 161.4123 ms
+2026-06-07 19:11:10.512 +05:30 [INF] Server sanika-laptop:19412:05ed8e47 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 19:11:10.527 +05:30 [INF] Server sanika-laptop:19412:05ed8e47 all the dispatchers started
+2026-06-07 19:16:10.536 +05:30 [INF] 3 servers were removed due to timeout
+2026-06-07 19:16:34.695 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 19:16:35.025 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 331.5683ms
+2026-06-07 19:16:35.250 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 19:16:35.250 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 19:16:35.251 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 19:16:35.266 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 15.0479ms
+2026-06-07 19:16:35.295 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 19:16:35.299 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 48.9424ms
+2026-06-07 19:16:35.303 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.2248ms
+2026-06-07 19:16:35.739 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 19:16:35.769 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-07 19:16:35.778 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 38.9067ms
+2026-06-07 19:16:35.778 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-07 19:16:35.787 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 18.0569ms
+2026-06-07 19:19:00.917 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 19:19:01.139 +05:30 [INF] Application Starting
+2026-06-07 19:19:01.233 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 19:19:02.108 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 19:19:02.351 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 19:19:02.424 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 19:19:02.426 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 19:19:02.506 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 19:19:02.508 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 19:19:02.509 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 19:19:02.529 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 19:19:02.531 +05:30 [INF] Hosting environment: Development
+2026-06-07 19:19:02.533 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 19:19:02.725 +05:30 [INF] Server sanika-laptop:35300:9467c699 successfully announced in 192.4609 ms
+2026-06-07 19:19:02.731 +05:30 [INF] Server sanika-laptop:35300:9467c699 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 19:19:02.747 +05:30 [INF] Server sanika-laptop:35300:9467c699 all the dispatchers started
+2026-06-07 19:19:03.119 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 19:19:03.260 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 141.4948ms
+2026-06-07 19:19:03.273 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 19:19:03.389 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 116.4674ms
+2026-06-07 19:19:03.460 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 19:19:03.460 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 19:19:03.461 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 19:19:03.462 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 19:19:03.489 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 27.6527ms
+2026-06-07 19:19:03.510 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 19:19:03.510 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 19:19:03.515 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 53.6294ms
+2026-06-07 19:19:03.517 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 57.0838ms
+2026-06-07 19:19:03.528 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 19:19:03.546 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 19:19:03.549 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 88.9508ms
+2026-06-07 19:19:03.581 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 53.3036ms
+2026-06-07 19:19:04.003 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 19:19:04.020 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 17.5101ms
+2026-06-07 19:24:02.752 +05:30 [INF] 1 servers were removed due to timeout
+2026-06-07 19:36:55.138 +05:30 [INF] Insurance API Started Successfully
+2026-06-07 19:36:55.410 +05:30 [INF] Application Starting
+2026-06-07 19:36:55.480 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-07 19:36:56.627 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-07 19:36:56.908 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-06-07 19:36:56.993 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-07 19:36:56.995 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-07 19:36:57.095 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: SANIKA-LAPTOP\SQLEXPRESS@InsuranceDB'
+2026-06-07 19:36:57.098 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-07 19:36:57.100 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-07 19:36:57.120 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-07 19:36:57.122 +05:30 [INF] Hosting environment: Development
+2026-06-07 19:36:57.124 +05:30 [INF] Content root path: C:\Users\Sanika\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-07 19:36:57.317 +05:30 [INF] Server sanika-laptop:14704:b9d95398 successfully announced in 195.4017 ms
+2026-06-07 19:36:57.323 +05:30 [INF] Server sanika-laptop:14704:b9d95398 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-07 19:36:57.338 +05:30 [INF] Server sanika-laptop:14704:b9d95398 all the dispatchers started
+2026-06-07 19:36:57.677 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger - null null
+2026-06-07 19:36:57.845 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger - 301 null null 168.497ms
+2026-06-07 19:36:57.856 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-07 19:36:57.985 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 128.9988ms
+2026-06-07 19:36:58.059 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - null null
+2026-06-07 19:36:58.061 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - null null
+2026-06-07 19:36:58.062 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-07 19:36:58.095 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-07 19:36:58.098 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-07 19:36:58.107 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-06-07 19:36:58.107 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-06-07 19:36:58.118 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 23.8116ms
+2026-06-07 19:36:58.123 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 61.4251ms
+2026-06-07 19:36:58.127 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui.css - 200 152034 text/css 67.9198ms
+2026-06-07 19:36:58.148 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-06-07 19:36:58.157 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 96.7418ms
+2026-06-07 19:36:58.178 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 79.8698ms
+2026-06-07 19:36:59.027 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-07 19:36:59.027 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - null null
+2026-06-07 19:36:59.040 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-06-07 19:36:59.043 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/favicon-32x32.png - 200 628 image/png 16.5731ms
+2026-06-07 19:36:59.050 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 23.518ms
+2026-06-07 19:37:11.277 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/2 - null null
+2026-06-07 19:37:11.313 +05:30 [INF] Executing endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 19:37:11.372 +05:30 [INF] Route matched with {action = "GetPolicyById", controller = "Policy"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPolicyById(Int32) on controller Insurance.API.Controllers.PolicyController (Insurance.API).
+2026-06-07 19:37:11.990 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-06-07 19:37:13.191 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:37:13.194 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:37:13.196 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-07 19:37:13.879 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__policyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PolicyId], [p].[AgentId], [p].[ApprovedAt], [p].[ApprovedBy], [p].[CreatedAt], [p].[CreatedBy], [p].[CustomerId], [p].[IsDeleted], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PolicyEndDate], [p].[PolicyNumber], [p].[PolicyStartDate], [p].[PremiumAmount], [p].[ProductId], [p].[QuoteId], [p].[Status], [p].[SumInsured]
+FROM [Policies] AS [p]
+WHERE [p].[PolicyId] = @__policyId_0
+2026-06-07 19:37:14.065 +05:30 [INF] Executed action Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API) in 2682.9366ms
+2026-06-07 19:37:14.076 +05:30 [INF] Executed endpoint 'Insurance.API.Controllers.PolicyController.GetPolicyById (Insurance.API)'
+2026-06-07 19:37:14.098 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/api/v1/policies/GetPolicyById/2 - 500 null application/json 2821.3937ms

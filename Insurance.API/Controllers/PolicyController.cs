@@ -84,12 +84,6 @@ namespace Insurance.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
-        [Route("RenewPolicy/{policyId}")]
-        public async Task<IActionResult> RenewPolicy (int policyId)
-        {
-            var result = await db.RenewPolicyAsync(policyId);
-            return Ok(result);
-        }
+       
     }
 }

@@ -10,6 +10,6 @@ namespace Insurance.Application.DTOs.Policy
     {
         //public int QuoteId { get; set; }
 
-        public DateTime PolicyStartDate { get; set; }
+        public DateOnly PolicyStartDate { get; set; }
     }
 }

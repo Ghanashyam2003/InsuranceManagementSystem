@@ -70,8 +70,8 @@ namespace Insurance.Infrastructure.Repository
                 ProductId = quote.ProductId,
                 SumInsured = quote.SumInsured,
                 PremiumAmount = finalPremium,
-                PolicyStartDate = dto.PolicyStartDate,
-                PolicyEndDate = dto.PolicyStartDate.AddYears(1),
+                PolicyStartDate = dto.PolicyStartDate.ToDateTime(TimeOnly.MinValue),
+                PolicyEndDate = dto.PolicyStartDate.AddYears(quote.PolicyTenureYears).ToDateTime(TimeOnly.MinValue),
                 PolicyNumber = await GeneratePolicyNumber(),
                 Status = status,
                 CreatedAt = DateTime.UtcNow,
@@ -218,26 +218,7 @@ namespace Insurance.Infrastructure.Repository
             };
         }
 
-        public async Task<ApiResponse<string>> RenewPolicyAsync(int policyId)
-        {
-            var data = await db.Policies.FirstOrDefaultAsync(x => x.PolicyId == policyId);
-
-            if (data == null)
-            {
-                throw new Exception("Policy Not Found");
-            }
-
-            data.PolicyEndDate = data.PolicyEndDate.AddYears(1);
-            data.Status = "Renewed";
-
-            await db.SaveChangesAsync();
-
-            return new ApiResponse<string>
-            {
-                Success = true,
-                Message = "Policy Renewed Successfully"
-            };
-        }
+       
 
         private async Task<string> GeneratePolicyNumber()
         {

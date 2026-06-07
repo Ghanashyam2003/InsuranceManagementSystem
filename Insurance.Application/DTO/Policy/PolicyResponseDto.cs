@@ -24,9 +24,9 @@ namespace Insurance.Application.DTOs.Policy
 
         public string? RiskCategory { get; set; }
 
-        public DateTime PolicyStartDate { get; set; }
+        public DateOnly PolicyStartDate { get; set; }
 
-        public DateTime PolicyEndDate { get; set; }
+        public DateOnly PolicyEndDate { get; set; }
 
         public string? Status { get; set; }
     }

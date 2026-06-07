@@ -8,9 +8,9 @@ namespace Insurance.Application.DTOs.Policy
 {
     public class UpdatePolicyDto
     {
-        public DateTime PolicyStartDate { get; set; }
+        public DateOnly PolicyStartDate { get; set; }
 
-        public DateTime PolicyEndDate { get; set; }
+        public DateOnly PolicyEndDate { get; set; }
 
         public decimal SumInsured { get; set; }
     }

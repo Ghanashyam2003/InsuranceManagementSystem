@@ -25,7 +25,5 @@ namespace Insurance.Application.Interfaces
             Task<ApiResponse<string>> RejectPolicyAsync(int policyId, int adminId);
 
             Task<ApiResponse<string>> CancelPolicyAsync(int policyId);
-
-            Task<ApiResponse<string>> RenewPolicyAsync(int policyId);
         }
     }

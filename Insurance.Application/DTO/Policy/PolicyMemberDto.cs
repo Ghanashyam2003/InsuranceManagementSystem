@@ -12,6 +12,6 @@ namespace Insurance.Application.DTOs.Policy
 
         public string? Relation { get; set; }
 
-        public DateTime DOB { get; set; }
+        public DateOnly DOB { get; set; }
     }
 }
