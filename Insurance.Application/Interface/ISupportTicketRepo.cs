@@ -27,5 +27,7 @@ namespace Insurance.Application.Interface
         Task<bool> UpdateStatusAsync(int ticketId,string status);
 
         Task<bool> CloseTicketAsync(int id);
+
+
     }
 }

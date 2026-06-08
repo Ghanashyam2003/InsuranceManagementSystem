@@ -114,6 +114,7 @@ builder.Services.AddRateLimiter(options =>
 
 #region Repositories
 
+builder.Services.AddScoped<IReportRepo,ReportRepo>();
 
 
 builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
