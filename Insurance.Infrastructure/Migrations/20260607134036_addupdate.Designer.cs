@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insurance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260606144754_QuoteUpdate")]
-    partial class QuoteUpdate
+    [Migration("20260607134036_addupdate")]
+    partial class addupdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -509,8 +509,8 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<int?>("PolicyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
@@ -608,8 +608,8 @@ namespace Insurance.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.HasKey("ProductId");
 
@@ -948,6 +948,9 @@ namespace Insurance.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PolicyTenureYears")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PremiumAmount")

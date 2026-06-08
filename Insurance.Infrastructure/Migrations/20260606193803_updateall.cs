@@ -5,7 +5,7 @@
 namespace Insurance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class QuoteUpdate : Migration
+    public partial class updateall : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
