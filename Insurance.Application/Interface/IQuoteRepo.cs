@@ -6,7 +6,9 @@ namespace Insurance.Application.Interfaces
     {
         Task<QuoteResponseDto> GenerateQuote(CreateQuoteDto dto);
 
-        Task<List<QuoteResponseDto>> GetAllQuotes();
+        Task<List<QuoteResponseDto>> GetAllQuotes(
+    int pageNumber,
+    int pageSize);
 
         Task<PremiumBreakdownDto> GetPremiumBreakdown(int quoteId);
 

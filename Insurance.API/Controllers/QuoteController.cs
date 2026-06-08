@@ -1,20 +1,28 @@
-﻿using Insurance.Application.DTOs.Quote;
-using Insurance.Application.Interfaces;
+﻿using Asp.Versioning;
 using Insurance.Application.Common.Responses;
+using Insurance.Application.DTOs.Quote;
+using Insurance.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Insurance.API.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [EnableRateLimiting("ApiThrottle")]
+    //[Route("api/[controller]")]
     [ApiController]
     public class QuoteController : ControllerBase
     {
         private readonly IQuoteRepo repo;
+        private readonly ILogger<QuoteController> logger;
 
         public QuoteController(
-            IQuoteRepo repo)
+    IQuoteRepo repo,
+    ILogger<QuoteController> logger)
         {
             this.repo = repo;
+            this.logger = logger;
         }
 
         [HttpPost("generate")]
@@ -26,6 +34,10 @@ namespace Insurance.API.Controllers
                 await repo
                     .GenerateQuote(dto);
 
+            logger.LogInformation(
+    "Generating quote for CustomerId {CustomerId}",
+    dto.CustomerId);
+
             return Ok(
                 ResponseHelper.Success(
                     result,
@@ -33,9 +45,19 @@ namespace Insurance.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllQuotes()
+        public async Task<IActionResult> GetAllQuotes(
+    int pageNumber = 1,
+    int pageSize = 10)
         {
-            var result = await repo.GetAllQuotes();
+            var result =
+                await repo.GetAllQuotes(
+                    pageNumber,
+                    pageSize);
+
+            logger.LogInformation(
+                "Fetching quotes PageNumber {PageNumber} PageSize {PageSize}",
+                pageNumber,
+                pageSize);
 
             return Ok(
                 ResponseHelper.Success(
@@ -50,6 +72,10 @@ namespace Insurance.API.Controllers
         public async Task<IActionResult> GetPremiumBreakdown(int id)
         {
             var result = await repo.GetPremiumBreakdown(id);
+
+            logger.LogInformation(
+    "Fetching premium breakdown for QuoteId {QuoteId}",
+    id);
 
             return Ok(
                 ResponseHelper.Success(
@@ -77,6 +103,10 @@ namespace Insurance.API.Controllers
         {
             var result = await repo.AcceptQuote(id);
 
+            logger.LogInformation(
+    "Accepting Quote {QuoteId}",
+    id);
+
             return Ok(
                 ResponseHelper.Success(
                     result,
@@ -89,6 +119,10 @@ namespace Insurance.API.Controllers
         public async Task<IActionResult> RejectQuote(int id)
         {
             var result = await repo.RejectQuote(id);
+
+            logger.LogInformation(
+    "Rejecting Quote {QuoteId}",
+    id);
 
             return Ok(
                 ResponseHelper.Success(

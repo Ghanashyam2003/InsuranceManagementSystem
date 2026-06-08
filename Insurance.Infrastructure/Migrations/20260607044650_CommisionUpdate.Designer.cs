@@ -4,6 +4,7 @@ using Insurance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insurance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260607044650_CommisionUpdate")]
+    partial class CommisionUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,42 +24,6 @@ namespace Insurance.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Insurance.Domain.Models.AgentCommission", b =>
-                {
-                    b.Property<int>("AgentCommissionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AgentCommissionId"));
-
-                    b.Property<int>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CommissionPercentage")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AgentCommissionId");
-
-                    b.HasIndex("AgentId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("AgentCommissions");
-                });
 
             modelBuilder.Entity("Insurance.Domain.Models.Agents", b =>
                 {
@@ -986,9 +953,6 @@ namespace Insurance.Infrastructure.Migrations
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("PolicyTenureYears")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("PremiumAmount")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -1054,59 +1018,6 @@ namespace Insurance.Infrastructure.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("Insurance.Domain.Models.SupportTicket", b =>
-                {
-                    b.Property<int>("TicketId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketId"));
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ResolvedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("TicketNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TicketId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SupportTickets");
                 });
 
             modelBuilder.Entity("Insurance.Domain.Models.UnderwritingCase", b =>
@@ -1196,25 +1107,6 @@ namespace Insurance.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Insurance.Domain.Models.AgentCommission", b =>
-                {
-                    b.HasOne("Insurance.Domain.Models.Agents", "Agent")
-                        .WithMany()
-                        .HasForeignKey("AgentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Insurance.Domain.Models.InsuranceProduct", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Agent");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Insurance.Domain.Models.Claim", b =>
@@ -1468,17 +1360,6 @@ namespace Insurance.Infrastructure.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Insurance.Domain.Models.SupportTicket", b =>
-                {
-                    b.HasOne("Insurance.Domain.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Insurance.Domain.Models.UnderwritingCase", b =>
