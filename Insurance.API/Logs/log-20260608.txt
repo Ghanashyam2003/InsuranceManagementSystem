@@ -1,0 +1,56 @@
+2026-06-08 13:12:11.236 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-06-08 13:12:15.236 +05:30 [INF] Hangfire SQL objects installed.
+2026-06-08 13:12:15.554 +05:30 [INF] Insurance API Started Successfully
+2026-06-08 13:12:15.774 +05:30 [INF] Application Starting
+2026-06-08 13:12:16.245 +05:30 [INF] Now listening on: https://localhost:7284
+2026-06-08 13:12:16.247 +05:30 [INF] Now listening on: http://localhost:5198
+2026-06-08 13:12:16.356 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\MSSQLLocalDB@InsuranceDB'
+2026-06-08 13:12:16.358 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-06-08 13:12:16.360 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-06-08 13:12:16.391 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-08 13:12:16.393 +05:30 [INF] Hosting environment: Development
+2026-06-08 13:12:16.395 +05:30 [INF] Content root path: C:\Users\DELL\source\repos\InsuranceManagementSystem\Insurance.API
+2026-06-08 13:12:16.426 +05:30 [INF] Server mehul:3392:fde965f8 successfully announced in 35.1468 ms
+2026-06-08 13:12:16.439 +05:30 [INF] Server mehul:3392:fde965f8 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-06-08 13:12:16.484 +05:30 [INF] 1 servers were removed due to timeout
+2026-06-08 13:12:16.659 +05:30 [INF] Server mehul:3392:fde965f8 all the dispatchers started
+2026-06-08 13:12:17.907 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/index.html - null null
+2026-06-08 13:12:18.647 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/index.html - 200 null text/html;charset=utf-8 760.3044ms
+2026-06-08 13:12:18.661 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-08 13:12:18.661 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-06-08 13:12:18.699 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 37.9969ms
+2026-06-08 13:12:18.858 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 197.3431ms
+2026-06-08 13:12:18.956 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - null null
+2026-06-08 13:12:19.042 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7284/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 86.6163ms
+2026-06-08 13:12:19.836 +05:30 [WRN] No store type was specified for the decimal property 'CommissionPercentage' on entity type 'AgentCommission'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-08 13:12:19.840 +05:30 [WRN] No store type was specified for the decimal property 'CommissionPercentage' on entity type 'Commission'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-08 13:12:19.842 +05:30 [WRN] No store type was specified for the decimal property 'PremiumAmount' on entity type 'PremiumSchedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-08 13:12:19.845 +05:30 [WRN] No store type was specified for the decimal property 'RiskLoadingPercentage' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-08 13:12:19.848 +05:30 [WRN] No store type was specified for the decimal property 'SumInsured' on entity type 'Quote'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-08 13:12:20.897 +05:30 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ScheduleId], [p].[CreatedAt], [p].[CreatedBy], [p].[DueDate], [p].[InstallmentNumber], [p].[IsPaid], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PaidDate], [p].[PolicyId], [p].[PremiumAmount]
+FROM [PremiumSchedules] AS [p]
+WHERE [p].[IsPaid] = CAST(0 AS bit) AND [p].[DueDate] < GETDATE()
+2026-06-08 13:13:02.209 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ScheduleId], [p].[CreatedAt], [p].[CreatedBy], [p].[DueDate], [p].[InstallmentNumber], [p].[IsPaid], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PaidDate], [p].[PolicyId], [p].[PremiumAmount]
+FROM [PremiumSchedules] AS [p]
+WHERE [p].[IsPaid] = CAST(0 AS bit) AND [p].[DueDate] < GETDATE()
+2026-06-08 13:14:02.405 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ScheduleId], [p].[CreatedAt], [p].[CreatedBy], [p].[DueDate], [p].[InstallmentNumber], [p].[IsPaid], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PaidDate], [p].[PolicyId], [p].[PremiumAmount]
+FROM [PremiumSchedules] AS [p]
+WHERE [p].[IsPaid] = CAST(0 AS bit) AND [p].[DueDate] < GETDATE()
+2026-06-08 13:15:02.343 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ScheduleId], [p].[CreatedAt], [p].[CreatedBy], [p].[DueDate], [p].[InstallmentNumber], [p].[IsPaid], [p].[ModifiedAt], [p].[ModifiedBy], [p].[PaidDate], [p].[PolicyId], [p].[PremiumAmount]
+FROM [PremiumSchedules] AS [p]
+WHERE [p].[IsPaid] = CAST(0 AS bit) AND [p].[DueDate] < GETDATE()
+2026-06-08 13:15:09.725 +05:30 [WRN] Stopping the server due to DomainUnload or ProcessExit event...
+2026-06-08 13:15:09.728 +05:30 [INF] Server mehul:3392:fde965f8 caught stopping signal...
+2026-06-08 13:15:09.745 +05:30 [INF] Server mehul:3392:fde965f8 caught stopped signal...
+2026-06-08 13:15:09.759 +05:30 [WRN] Server mehul:3392:fde965f8 caught shutdown signal...
+2026-06-08 13:15:09.763 +05:30 [WRN] Server mehul:3392:fde965f8 stopped non-gracefully due to SqlServerHeartbeatProcess. Outstanding work on those dispatchers could be aborted, and there can be delays in background processing. This server instance will be incorrectly shown as active for a while. To avoid non-graceful shutdowns, investigate what prevents from stopping gracefully and add CancellationToken support for those methods.
+2026-06-08 13:15:09.787 +05:30 [INF] Server mehul:3392:fde965f8 successfully reported itself as stopped in 16.9384 ms
+2026-06-08 13:15:09.789 +05:30 [INF] Server mehul:3392:fde965f8 has been stopped in total 51.6837 ms

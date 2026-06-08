@@ -14,6 +14,9 @@ namespace Insurance.Application.DTOs.Quote
         public decimal SumInsured { get; set; }
 
         [Required]
+        public int PolicyTenureYears { get; set; }
+
+        [Required]
         public int Age { get; set; }
 
         [Required]

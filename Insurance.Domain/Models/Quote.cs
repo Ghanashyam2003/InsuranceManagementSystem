@@ -48,5 +48,7 @@ namespace Insurance.Domain.Models
         public string? RiskCategory { get; set; }
 
         public decimal RiskLoadingPercentage { get; set; }
+
+        public int PolicyTenureYears { get; set; }
     }
 }

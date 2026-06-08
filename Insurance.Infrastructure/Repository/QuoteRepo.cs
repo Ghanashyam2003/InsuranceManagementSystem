@@ -20,7 +20,6 @@ namespace Insurance.Infrastructure.Repository
 
         public async Task<QuoteResponseDto> GenerateQuote(CreateQuoteDto dto)
         {
-            // ---------------- VALIDATIONS ----------------
             var customer = await db.Customers
                 .FirstOrDefaultAsync(x => x.CustomerId == dto.CustomerId);
 
@@ -37,7 +36,7 @@ namespace Insurance.Infrastructure.Repository
                 throw new Exception("Product Benefit Not Found");
 
 
-            // ---------------- RISK SCORING ----------------
+            
             int riskScore = 0;
 
             // AGE SCORE (common base rule)
@@ -50,7 +49,7 @@ namespace Insurance.Infrastructure.Repository
             else
                 riskScore += 50;
 
-            // MEDICAL FACTORS
+            
             if (dto.IsDiabetic)
                 riskScore += 20;
 
@@ -69,7 +68,7 @@ namespace Insurance.Infrastructure.Repository
             if (dto.BMI > 30)
                 riskScore += 15;
 
-            // PRODUCT-SPECIFIC RULES
+            
             var productType = product.ProductType?.ToLower();
 
             if (productType == "life")
@@ -90,13 +89,13 @@ namespace Insurance.Infrastructure.Repository
                     riskScore += 20;
             }
 
-            // ---------------- RISK CATEGORY ----------------
+            
             string riskCategory =
                 riskScore <= 30 ? "Low" :
                 riskScore <= 70 ? "Medium" :
                 "High";
 
-            // ---------------- PREMIUM LOADING (AGE BASED) ----------------
+            
             decimal riskLoading = 0;
 
             if (dto.Age >= 18 && dto.Age < 30)
@@ -108,14 +107,17 @@ namespace Insurance.Infrastructure.Repository
             else
                 riskLoading = 40;
 
-            // ---------------- PREMIUM CALCULATION ----------------
+            
             decimal basePremium =
                 dto.SumInsured * benefit.BaseRate / 100;
 
-            decimal finalPremium =
-                basePremium * (1 + riskLoading / 100);
+            decimal annualPremium =
+                     basePremium * (1 + riskLoading / 100);
 
-            // ---------------- SAVE HEALTH PROFILE ----------------
+            decimal monthlyPremium =
+                Math.Round(annualPremium / 12, 2);
+
+           
             var healthProfile = new HealthProfile
             {
                 CustomerId = dto.CustomerId,
@@ -132,13 +134,13 @@ namespace Insurance.Infrastructure.Repository
             db.HealthProfiles.Add(healthProfile);
             await db.SaveChangesAsync();
 
-            // ---------------- CREATE QUOTE ----------------
+            
             var quote = new Quote
             {
                 CustomerId = dto.CustomerId,
                 ProductId = dto.ProductId,
                 SumInsured = dto.SumInsured,
-                PremiumAmount = finalPremium,
+                PremiumAmount = monthlyPremium,
                 QuoteDate = DateTime.UtcNow,
                 ExpiryDate = DateTime.UtcNow.AddDays(30),
                 Status = "Pending",
@@ -151,7 +153,7 @@ namespace Insurance.Infrastructure.Repository
             db.Quotes.Add(quote);
             await db.SaveChangesAsync();
 
-            // ---------------- UNDERWRITING ----------------
+            
             var underwriting = new UnderwritingCase
             {
                 QuoteId = quote.QuoteId,
@@ -163,14 +165,18 @@ namespace Insurance.Infrastructure.Repository
             db.UnderwritingCases.Add(underwriting);
             await db.SaveChangesAsync();
 
-            // ---------------- RESPONSE ----------------
+           
             return mapper.Map<QuoteResponseDto>(quote);
         }
 
-        public async Task<List<QuoteResponseDto>> GetAllQuotes()
+        public async Task<List<QuoteResponseDto>> GetAllQuotes(
+    int pageNumber,
+    int pageSize)
         {
             var quotes = await db.Quotes
                 .AsNoTracking()
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
             return mapper.Map<List<QuoteResponseDto>>(quotes);
@@ -211,10 +217,10 @@ namespace Insurance.Infrastructure.Repository
             if (product == null || benefit == null || customer == null)
                 throw new Exception("Required data missing");
 
-            // ---------------- AGE CALCULATION FROM DOB ----------------
+            
             int age = CalculateAge(customer.DOB);
 
-            // ---------------- RISK SCORE REBUILD ----------------
+            
             int riskScore = 0;
 
             // AGE SCORE
@@ -227,7 +233,7 @@ namespace Insurance.Infrastructure.Repository
             else
                 riskScore += 50;
 
-            // MEDICAL FACTORS (from HealthProfile)
+            
             if (health != null)
             {
                 if (health.IsDiabetic)
@@ -249,7 +255,7 @@ namespace Insurance.Infrastructure.Repository
                     riskScore += 15;
             }
 
-            // PRODUCT-SPECIFIC RULES
+      
             if (product.ProductType?.ToLower() == "life")
             {
                 if (age > 50)
@@ -268,28 +274,31 @@ namespace Insurance.Infrastructure.Repository
                     riskScore += 20;
             }
 
-            // ---------------- RISK CATEGORY ----------------
+            
             string riskCategory =
                 riskScore <= 30 ? "Low" :
                 riskScore <= 70 ? "Medium" :
                 "High";
 
-            // ---------------- BASE PREMIUM ----------------
+           
             decimal basePremium =
                 quote.SumInsured * benefit.BaseRate / 100;
 
-            // ---------------- AGE-BASED LOADING ----------------
+           
             decimal riskLoading =
                 age >= 18 && age < 30 ? 0 :
                 age >= 30 && age < 45 ? 10 :
                 age >= 45 && age < 60 ? 20 :
                 40;
 
-            // ---------------- FINAL PREMIUM ----------------
-            decimal finalPremium =
+            
+            decimal annualPremium =
                 basePremium * (1 + riskLoading / 100);
 
-            // ---------------- RESPONSE ----------------
+            decimal monthlyPremium =
+                Math.Round(annualPremium / 12, 2);
+
+            
             return new PremiumBreakdownDto
             {
                 QuoteId = quote.QuoteId,
@@ -299,7 +308,7 @@ namespace Insurance.Infrastructure.Repository
                 RiskScore = riskScore,
                 RiskCategory = riskCategory,
                 RiskLoadingPercentage = riskLoading,
-                FinalPremium = finalPremium,
+                FinalPremium = monthlyPremium,
                 ProductType = product.ProductType
             };
         }
@@ -325,14 +334,14 @@ namespace Insurance.Infrastructure.Repository
             if (quote == null)
                 throw new Exception("Quote Not Found");
 
-            // Prevent invalid transitions
+            
             if (quote.Status == "Accepted")
                 throw new Exception("Quote is already accepted");
 
             if (quote.Status == "Expired")
                 throw new Exception("Cannot accept expired quote");
 
-            // ---------------- UPDATE ONLY QUOTE ----------------
+            
             quote.Status = "Accepted";
             quote.ModifiedAt = DateTime.UtcNow;
 
@@ -350,7 +359,7 @@ namespace Insurance.Infrastructure.Repository
             if (quote == null)
                 throw new Exception("Quote Not Found");
 
-            // Prevent invalid transitions
+            
             if (quote.Status == "Rejected")
                 throw new Exception("Quote is already rejected");
 
@@ -360,7 +369,7 @@ namespace Insurance.Infrastructure.Repository
             if (quote.Status == "Expired")
                 throw new Exception("Cannot reject expired quote");
 
-            // ---------------- UPDATE STATUS ----------------
+            
             quote.Status = "Rejected";
             quote.ModifiedAt = DateTime.UtcNow;
 

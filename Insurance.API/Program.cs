@@ -18,6 +18,7 @@ using Insurance.Application.Interfaces;
 using Insurance.Infrastructure.Repository;
 using Hangfire;
 using Hangfire.SqlServer;
+using Insurance.Application.Interface;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -43,6 +44,10 @@ builder.Services.AddAutoMapper(cfg =>
 
 
 builder.Services.AddScoped<IQuoteRepo, QuoteRepo>();
+
+builder.Services.AddScoped<IAgentRepository, AgentRepository>();
+
+builder.Services.AddScoped<ICommissionRepository, CommissionRepository>();
 
 builder.Services.AddScoped<IPremiumScheduleRepo, PremiumScheduleRepo>();
 
