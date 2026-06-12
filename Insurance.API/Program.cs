@@ -1,15 +1,10 @@
-using Asp.Versioning;
 using Hangfire;
 using Hangfire.SqlServer;
 using Insurance.API.Middleware;
-using Insurance.Application.Interface;
-using Insurance.Application.Interfaces;
 using Insurance.Application.Mappings;
 using Insurance.Application.Services;
 using Insurance.Domain.Models;
 using Insurance.Infrastructure.Data;
-using Insurance.Infrastructure.Repositories;
-using Insurance.Infrastructure.Repository;
 using Insurance.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
@@ -22,6 +17,8 @@ using System.Threading.RateLimiting;
 using Asp.Versioning;
 using Insurance.Application.Interfaces;
 using Insurance.Infrastructure.Repositories;
+using Insurance.Application.Interface;
+using Insurance.Infrastructure.Repository;
 
 
 
@@ -197,6 +194,7 @@ builder.Services.AddScoped<IReportRepo, ReportRepo>();
 builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductBenefitRepository, ProductBenefitRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 #endregion
 
@@ -259,14 +257,7 @@ using (var scope = app.Services.CreateScope())
         await db.SaveChangesAsync();
     }
 
-builder.Services.AddMemoryCache();
-builder.Services.AddScoped<
-    IPaymentRepository,
-    PaymentRepository>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
     if (!await db.Auths.AnyAsync(a =>
         a.Email == "admin@gmail.com"))
     {

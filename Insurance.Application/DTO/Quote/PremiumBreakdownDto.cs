@@ -15,11 +15,11 @@ namespace Insurance.Application.DTOs.Quote
         public decimal BasePremium { get; set; }
 
         public int RiskScore { get; set; }
-        public string RiskCategory { get; set; }
+        public string? RiskCategory { get; set; }
 
         public decimal RiskLoadingPercentage { get; set; }
         public decimal FinalPremium { get; set; }
 
-        public string ProductType { get; set; }
+        public string? ProductType { get; set; }
     }
 }

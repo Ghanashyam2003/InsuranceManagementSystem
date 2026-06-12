@@ -12,10 +12,10 @@
 
         public decimal PremiumAmount { get; set; }
 
-        public string RiskCategory { get; set; }
+        public string? RiskCategory { get; set; }
 
         public decimal RiskLoadingPercentage { get; set; }
 
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }
