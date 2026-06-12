@@ -28,7 +28,7 @@ namespace Insurance.Application.Interface
 
         Task<List<Customer>> GetCustomersWithPendingQuotes(int agentId, int pageNumber, int pageSize);
 
-        Task<List<Customer>>GetCustomersWithActivePolicies(int agentId, int pageNumber, int pageSize);
+        Task<List<Customer>> GetCustomersWithActivePolicies(int agentId, int pageNumber, int pageSize);
 
         Task<AgentDashboardDto> GetDashboard(int agentId);
 

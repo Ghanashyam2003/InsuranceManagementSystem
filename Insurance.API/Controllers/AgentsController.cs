@@ -136,7 +136,7 @@ namespace Insurance.API.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchAgents([FromQuery] string name , int pageNumber,
+        public async Task<IActionResult> SearchAgents([FromQuery] string name, int pageNumber,
     int pageSize)
         {
             var result =
@@ -154,12 +154,12 @@ namespace Insurance.API.Controllers
         }
 
         [HttpGet("{id}/customers/pending-quotes")]
-        public async Task<IActionResult>GetCustomersWithPendingQuotes(int id, int pageNumber,
+        public async Task<IActionResult> GetCustomersWithPendingQuotes(int id, int pageNumber,
     int pageSize)
         {
             var result =
                 await repo
-                    .GetCustomersWithPendingQuotes(id,pageNumber,
+                    .GetCustomersWithPendingQuotes(id, pageNumber,
     pageSize);
 
             logger.LogInformation(
@@ -173,12 +173,12 @@ namespace Insurance.API.Controllers
         }
 
         [HttpGet("{id}/customers/active-policies")]
-        public async Task<IActionResult>GetCustomersWithActivePolicies(int id, int pageNumber,
+        public async Task<IActionResult> GetCustomersWithActivePolicies(int id, int pageNumber,
     int pageSize)
         {
             var result =
                 await repo
-                    .GetCustomersWithActivePolicies(id,pageNumber,
+                    .GetCustomersWithActivePolicies(id, pageNumber,
     pageSize);
 
             logger.LogInformation(

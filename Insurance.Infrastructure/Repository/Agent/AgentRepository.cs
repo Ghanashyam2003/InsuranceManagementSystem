@@ -21,10 +21,10 @@ namespace Insurance.Infrastructure.Repository
             if (string.IsNullOrWhiteSpace(name))
                 throw new Exception("Agent name is required");
 
-           
+
             var parts = name.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            
+
             string initials = "";
 
             foreach (var part in parts)
@@ -32,18 +32,18 @@ namespace Insurance.Infrastructure.Repository
                 initials += char.ToUpper(part[0]);
             }
 
-            
-            if (initials.Length == 1)
-                initials += initials; 
 
-            
+            if (initials.Length == 1)
+                initials += initials;
+
+
             var random = new Random();
             int number = random.Next(10, 99);
 
             return $"A{initials}{number}";
         }
 
-        
+
         public async Task<int> CreateAgent(CreateAgentDto dto)
         {
             var exists = await db.Agents
@@ -52,7 +52,7 @@ namespace Insurance.Infrastructure.Repository
             if (exists)
                 throw new Exception("Agent already exists");
 
-            
+
             string agentCode = GenerateAgentCode(dto.AgentName);
 
             var agent = new Agents
@@ -72,7 +72,7 @@ namespace Insurance.Infrastructure.Repository
             return agent.AgentId;
         }
 
-        
+
         public async Task<List<Agents>> GetAllAgents(int pageNumber,
     int pageSize)
         {
@@ -83,14 +83,14 @@ namespace Insurance.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        
+
         public async Task<Agents?> GetAgentById(int id)
         {
             return await db.Agents
                 .FirstOrDefaultAsync(x => x.AgentId == id && x.IsActive);
         }
 
-    
+
         public async Task UpdateAgent(int id, CreateAgentDto dto)
         {
             var agent = await db.Agents.FindAsync(id);
@@ -98,7 +98,7 @@ namespace Insurance.Infrastructure.Repository
             if (agent == null)
                 throw new Exception("Agent not found");
 
-            
+
             agent.AgentName = dto.AgentName;
             agent.Email = dto.Email;
             agent.MobileNumber = dto.MobileNumber;
@@ -108,7 +108,7 @@ namespace Insurance.Infrastructure.Repository
             await db.SaveChangesAsync();
         }
 
-        
+
         public async Task DeleteAgent(int id)
         {
             var agent = await db.Agents.FindAsync(id);
@@ -155,7 +155,7 @@ namespace Insurance.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<List<Customer>>GetCustomersWithPendingQuotes(int agentId, int pageNumber, int pageSize)
+        public async Task<List<Customer>> GetCustomersWithPendingQuotes(int agentId, int pageNumber, int pageSize)
         {
             return await db.Customers
                 .Where(c =>
@@ -168,7 +168,7 @@ namespace Insurance.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<List<Customer>>GetCustomersWithActivePolicies(int agentId, int pageNumber, int pageSize)
+        public async Task<List<Customer>> GetCustomersWithActivePolicies(int agentId, int pageNumber, int pageSize)
         {
             return await db.Customers
                 .Where(c =>

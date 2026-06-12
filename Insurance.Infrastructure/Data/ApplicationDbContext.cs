@@ -59,6 +59,8 @@ namespace Insurance.Infrastructure.Data
 
         public DbSet<AgentCommission> AgentCommissions { get; set; }
 
+        public DbSet<Auth> Auths { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

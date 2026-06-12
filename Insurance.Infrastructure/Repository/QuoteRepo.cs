@@ -218,7 +218,7 @@ namespace Insurance.Infrastructure.Repository
                 throw new Exception("Required data missing");
 
             
-            int age = CalculateAge(customer.DOB);
+            int age = CalculateAge((DateTime)customer.DOB);
 
             
             int riskScore = 0;
