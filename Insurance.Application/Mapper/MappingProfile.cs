@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Insurance.Application.DTO.Payment;
 using Insurance.Application.DTOs.Customer;
 using Insurance.Application.DTOs.Product;
 using Insurance.Application.DTOs.ProductBenefit;
@@ -29,6 +30,12 @@ namespace Insurance.Application.Mappings
             CreateMap<PolicyMember, PolicyMemberDto>().ReverseMap();
             CreateMap<Customer, CustomerResponseDto>();
 
+
+            // Payment
+
+            CreateMap<Payment, PaymentResponseDto>();
+
+            CreateMap<PaymentResponseDto, Payment>();
             CreateMap<ProductCreateDto, InsuranceProduct>()
                .ReverseMap();
 

@@ -19,6 +19,11 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
 using System.Threading.RateLimiting;
+using Asp.Versioning;
+using Insurance.Application.Interfaces;
+using Insurance.Infrastructure.Repositories;
+
+
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -254,6 +259,14 @@ using (var scope = app.Services.CreateScope())
         await db.SaveChangesAsync();
     }
 
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<
+    IPaymentRepository,
+    PaymentRepository>();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
     if (!await db.Auths.AnyAsync(a =>
         a.Email == "admin@gmail.com"))
     {
