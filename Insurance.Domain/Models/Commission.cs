@@ -17,6 +17,9 @@ namespace Insurance.Domain.Models
     [Required(ErrorMessage = "Commission Amount is Required")]
     public decimal CommissionAmount { get; set; }
 
+    [Required(ErrorMessage = "Commission Percentage is Required")]
+    public decimal CommissionPercentage { get; set; }
+
     [Required(ErrorMessage = "Commission Date is Required")]
     public DateTime CommissionDate { get; set; }
 

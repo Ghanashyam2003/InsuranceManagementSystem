@@ -55,6 +55,12 @@ namespace Insurance.Infrastructure.Data
 
         public DbSet<Notification> Notifications { get; set; }
 
+        public DbSet<SupportTicket> SupportTickets { get; set; }
+
+        public DbSet<AgentCommission> AgentCommissions { get; set; }
+
+        public DbSet<Auth> Auths { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
